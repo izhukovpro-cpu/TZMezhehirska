@@ -25,7 +25,8 @@ body {
   color:var(--color-text-primary);
   font-size:14px;
   line-height:1.65;
-  background: #EEF0EB;
+  background: #111 url('bg.png') no-repeat center center fixed;
+  background-size: cover;
 }
 
 ::-webkit-scrollbar { width: 8px; }
@@ -37,10 +38,12 @@ body {
   max-width:900px;
   margin:2.5rem auto;
   padding:2rem 2.5rem;
-  background: #FFFFFF;
-  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255, 255, 255, 0.93);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 20px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25), 0 1px 4px rgba(0,0,0,0.05);
 }
 
 .doc-header {
@@ -262,8 +265,8 @@ body {
   padding:14px 12px;
   text-align:center;
 }
-.sb-val { font-family:'Cormorant',serif; font-size:1.05rem; font-weight:700; color:#1C1B19; }
-.sb-lbl { font-size:.7rem; color:var(--color-text-secondary); text-transform:uppercase; letter-spacing:.05em; margin-top:5px; font-weight:600; }
+.sb-val { font-family:'Cormorant',serif; font-size:1.6rem; font-weight:700; color:#1C1B19; }
+.sb-lbl { font-size:.85rem; color:var(--color-text-secondary); text-transform:uppercase; letter-spacing:.05em; margin-top:5px; font-weight:600; }
 
 /* ── ENTRANCE ANIMATIONS ── */
 @keyframes docEnter {
@@ -318,8 +321,7 @@ body {
 <div class="doc">
 
 <div class="doc-header">
-  <div class="doc-label">Технічне завдання на архітектурне проєктування</div>
-  <div class="doc-title">Бізнес-центр <em>Межигірська</em></div>
+  <div class="doc-title">Технічне завдання на архітектурне проєктування<br>Бізнес-центр <em>Межигірська</em></div>
   <div class="doc-meta">
     <span><strong>Адреса:</strong> м. Київ, вул. Межигірська</span>
     <span><strong>Кадастр:</strong> 8000000000:85:288:0001</span>
@@ -420,9 +422,6 @@ body {
       <tr><td class="pk">Ландшафт</td><td class="pv">Зелений буфер 5 м по периметру ділянки. Велодоріжка вздовж вул. Межигірська. Публічна площа перед входом ~300–400 м²</td></tr>
     </table>
 
-    <div class="alert alert-add" style="margin-top:.6rem">
-      <strong>Конструктивна сітка колон:</strong> <strong>8,1×8,1 м</strong> або <strong>7,5×9,0 м</strong> (кратно 1,5 м). Це ключова вимога для гнучкості планування офісів та відповідності BREEAM. Прорахувати обидва варіанти.
-    </div>
   </div>
 </div>
 
@@ -440,13 +439,13 @@ body {
         <td><span class="floor-badge" style="background:#2C2A26;color:#F1EFE8">P-1</span></td>
         <td>Паркінг (120–130 місць) + Велопарковка (50+ місць) + Душові/роздягальні для велосипедистів</td>
         <td>~4 200 м²</td>
-        <td>EV-зарядки на 100% місць P-1 (норма BREEAM EV-ready). Окремий велосипедний пандус або вантажний ліфт</td>
+        <td>EV-зарядки на 30% місць P-1 (норма BREEAM EV-ready). Окремий велосипедний пандус або вантажний ліфт</td>
       </tr>
       <tr>
         <td><span class="floor-badge" style="background:#2C2A26;color:#F1EFE8">P-2</span></td>
         <td>Паркінг (120–130 місць) + Технічні приміщення + BESS + Цивільне укриття</td>
         <td>~4 200 м²</td>
-        <td>BESS: 500–800 кВт·год (резерв 4–8 год). Насосна станція. Резервуар питної води 100 м³. Резервуар дощової води (збір з покрівлі) 50–80 м³. Дизельний генератор 800–1200 кВА. Укриття ЦО: ≥місткість 100% персоналу будівлі (~800–1 200 осіб)</td>
+        <td>BESS: 2 МВт (резерв 4–8 год). Насосна станція. Резервуар питної води 100 м³. Резервуар дощової води (збір з покрівлі) 50–80 м³. ГПУ 800–1200 кВА. Укриття ЦО: ≥місткість 100% персоналу будівлі (~800–1 200 осіб)</td>
       </tr>
     </table>
     <div class="alert alert-add" style="margin-top:.6rem">
@@ -514,7 +513,7 @@ body {
       </tr>
       <tr>
         <td><span class="floor-badge" style="background:#2C2A26;color:#F1EFE8">Покрівля</span></td>
-        <td><strong>50%</strong>: Ресторан (скляна надбудова) + Відкриті тераси + Зелена зона. <strong>30%</strong>: Сонячні панелі + VRF-конденсатори. <strong>20%</strong>: Extensive green roof</td>
+        <td><strong>50%</strong>: Ресторан (скляна надбудова) + Відкриті тераси + Зелена зона. <strong>30%</strong>: Сонячні панелі + газова котельня + VRF+DOAS. <strong>20%</strong>: Extensive green roof</td>
         <td>~2 500 м²</td>
         <td>Нежитлова зона</td>
       </tr>
@@ -626,14 +625,14 @@ body {
   </div>
   <div class="section-body">
     <div class="param-grid">
-      <div class="param-row"><div class="k">HVAC</div><div class="v"><strong>VRF (Variable Refrigerant Flow) + DOAS</strong> (Dedicated Outdoor Air System). Daikin або Mitsubishi Electric, cold-climate rated до –25°C. Зонування кожні 50–100 м². Теплообмінники з рекуперацією ≥80%</div></div>
+      <div class="param-row"><div class="k">HVAC</div><div class="v"><strong>VRF (Variable Refrigerant Flow) + DOAS</strong> + газова кришна котельня. Daikin або Mitsubishi Electric, cold-climate rated до –25°C. Зонування кожні 50–100 м². Теплообмінники з рекуперацією ≥80%</div></div>
       <div class="param-row"><div class="k">BMS / AI</div><div class="v"><strong>Schneider EcoStruxure</strong> або Siemens Desigo CC. IoT-датчики occupancy (1 датчик / 20 м²). Digital twin будівлі. Мобільний додаток орендаря (бронювання кімнат, температура, освітлення)</div></div>
       <div class="param-row"><div class="k">Освітлення</div><div class="v"><strong>DALI-2</strong> з human-centric функцією. Тунабельна кольорова температура 2700–6500K. Циркадні ритми. Датчики присутності та денного світла. Ціль: ≤3 кВт·год/м²/рік</div></div>
       <div class="param-row"><div class="k">Сонячні панелі</div><div class="v">На покрівлі (~700–900 м² панелей). Потужність ~100–140 кВт. Покриває ~15–20% споживання будівлі. Monolithic bifacial panels</div></div>
-      <div class="param-row"><div class="k">BESS</div><div class="v">500–800 кВт·год LFP (lithium iron phosphate). Рівень P-2, вогнезахисний відсік FR120. Автономія критичних систем: 4–8 год</div></div>
+      <div class="param-row"><div class="k">BESS</div><div class="v">2 МВт LFP (lithium iron phosphate). Рівень P-2, вогнезахисний відсік FR120. Автономія критичних систем: 4–8 год</div></div>
       <div class="param-row"><div class="k">Вода</div><div class="v">Система збору дощової води 50–80 м³ (для поливу + туалети). Питний резервуар 100 м³ (P-2). Очисна станція. Система моніторингу споживання (лічильники на кожному поверсі)</div></div>
       <div class="param-row"><div class="k">Фасад</div><div class="v">WWR (Window-to-Wall Ratio): <strong>45–55%</strong> на N/NW, <strong>35–45%</strong> на S/SE/SW. Low-E скло U≤1,1 Вт/м²К, SHGC 0,25–0,40. <strong>Зовнішній автоматизований сонцезахист</strong> (lamellar brise-soleil) на S/SE/SW фасадах. Unitized curtain wall система</div></div>
-      <div class="param-row"><div class="k">Генератор</div><div class="v">Дизельний генератор <strong>800–1 200 кВА</strong>, 100% потужності будівлі. Запас палива на 72 год. Автоматичне введення резерву (АВР) ≤10 сек</div></div>
+      <div class="param-row"><div class="k">Генератор</div><div class="v">Газопоршнева установка (ГПУ) <strong>800–1200 кВА</strong>, 100% потужності будівлі. Автоматичне введення резерву (АВР) ≤10 сек</div></div>
       <div class="param-row"><div class="k">Starlink / Інтернет</div><div class="v">Мінімум 2 провайдери оптоволокно + Starlink Enterprise як резерв. Корпоративна Wi-Fi 6E мережа на всіх поверхах</div></div>
       <div class="param-row"><div class="k">EV-зарядки</div><div class="v">100% місць P-1 — кабельна підготовка. 20–30 активних зарядок AC 22 кВт + 4–6 DC fast charger 50–150 кВт. Управління через BMS</div></div>
   </div>
@@ -655,7 +654,7 @@ body {
       </div>
       <div class="cert-item">
         <div class="cert-name">WELL Building Standard v2</div>
-        <div class="cert-level">Ціль: Gold або Platinum. Фокус: Air, Water, Nourishment, Light, Movement, Thermal Comfort, Mind. CO₂ &lt;800 ppm у всіх офісах</div>
+        <div class="cert-level">Ціль: Золото або Платина. Фокус: Повітря, Вода, Харчування, Освітлення, Рух, Тепловий комфорт, Ментальне здоров'я. CO₂ &lt;800 ppm у всіх офісах</div>
       </div>
       <div class="cert-item">
         <div class="cert-name">Human-Centric Design</div>
@@ -677,7 +676,7 @@ body {
 <div class="section">
   <div class="section-head" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
     <div class="section-num">08</div>
-    <div class="section-title">Завдання архітектору — склад матеріалів</div>
+    <div class="section-title">Завдання архітектору</div>
     <span aria-hidden="true" style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
   </div>
   <div class="section-body">
@@ -686,7 +685,6 @@ body {
       <div class="param-row"><div class="k">Обов'язковий склад</div><div class="v">1. Аксонометрія всієї будівлі (розрізана по горизонталі — «вибуховий вигляд» по поверхах). 2. Схема генплану М1:500 з позначенням входів, зеленої зони, паркінгу. 3. Схема типового поверху 3–6. 4. Схема 1-го поверху з функціями. 5. Схема підземних рівнів (P-1, P-2). 6. Схема покрівлі. 7. Розріз по атріуму/двору</div></div>
       <div class="param-row"><div class="k">Бажаний склад</div><div class="v">Фасади (4 сторони). 3–5 візуалізацій (зовнішній вигляд, двір, лобі, коворкінг, покрівля). Схема функціонального зонування по поверхах (кольорова). Баланс площ (TEP з розбивкою GLA по функціях)</div></div>
       <div class="param-row"><div class="k">Строки</div><div class="v">Концептуальна аксонометрія + генплан: <strong>2–3 тижні</strong>. Повний концепт-пакет: 4–6 тижнів. Рекомендую проміжний огляд на тижні 1 та 3</div></div>
-      <div class="param-row"><div class="k">Референси</div><div class="v">Metropolitan Warsaw (Foster+Partners, 2003). Forest Office Campus Warsaw (MVRDV, 2020). The Edge Amsterdam (PLP, 2015). Astarta Creative Quarter Kyiv (FORT, 2018). Porsche Engineering Center Weissach (Henn, 2018)</div></div>
     </div>
   </div>
 </div>
