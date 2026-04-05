@@ -1,0 +1,609 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-text-primary: #F9FAFB;
+  --color-text-secondary: #9CA3AF;
+  --color-border-tertiary: rgba(255, 255, 255, 0.1);
+  --color-background-secondary: rgba(255, 255, 255, 0.04);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body {
+  font-family:'Syne',sans-serif;
+  color:var(--color-text-primary);
+  font-size:13px;
+  line-height:1.6;
+  background: url('bg.png') center/cover fixed no-repeat;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(8, 11, 18, 0.85), rgba(0, 0, 0, 0.9));
+  z-index: -1;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+
+.doc {
+  max-width:900px;
+  margin:2.5rem auto;
+  padding:2rem 2.5rem;
+  background: rgba(20, 25, 35, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.doc-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom:1.5rem;
+  margin-bottom:1.5rem;
+  position: relative;
+}
+.doc-label {
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:#34D399;
+  margin-bottom:.4rem;
+  text-shadow: 0 0 10px rgba(52,211,153,0.3);
+}
+.doc-title {
+  font-family:'DM Serif Display',serif;
+  font-size:2.2rem;
+  line-height:1.15;
+  color:#fff;
+  letter-spacing: 0.02em;
+}
+.doc-title em {
+  font-style:italic;
+  color:#34D399;
+}
+.doc-meta {
+  display:flex;
+  flex-wrap:wrap;
+  gap:1.5rem;
+  margin-top:1rem;
+  font-size:.75rem;
+  color:var(--color-text-secondary);
+}
+.doc-meta span strong {
+  color:#E5E7EB;
+  font-weight:600;
+}
+
+.section {
+  margin-bottom:1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.3);
+  border-radius:12px;
+  overflow:hidden;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+}
+.section:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.4);
+}
+.section-head {
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  padding:.8rem 1.2rem;
+  background:var(--color-background-secondary);
+  cursor:pointer;
+  user-select:none;
+}
+.section-num {
+  font-family:'DM Serif Display',serif;
+  font-size:1.2rem;
+  color:#34D399;
+  width:28px;
+  flex-shrink:0;
+  text-shadow: 0 0 10px rgba(52,211,153,0.3);
+}
+.section-title {
+  font-size:.85rem;
+  font-weight:700;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  color:var(--color-text-primary);
+  flex:1;
+}
+.section-tag {
+  font-size:.65rem;
+  font-weight:600;
+  padding:3px 10px;
+  border-radius:20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.section-body { padding:1rem 1.2rem; display:none; }
+.section-body.open { display:block; animation: fadeIn 0.4s ease forwards; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.param-grid { display:grid; grid-template-columns:180px 1fr; gap:0; }
+.param-row { display:contents; }
+.param-row .k {
+  padding:.6rem .6rem .6rem 0;
+  font-weight:600;
+  color:var(--color-text-secondary);
+  font-size:.72rem;
+  border-bottom: 1px solid var(--color-border-tertiary);
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+.param-row .v {
+  padding:.6rem 0;
+  border-bottom: 1px solid var(--color-border-tertiary);
+  font-size:.8rem;
+  color:#E5E7EB;
+}
+.param-row:last-child .k, .param-row:last-child .v { border-bottom:none; }
+.param-row .v strong { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.2); }
+
+.tag-req { background: rgba(52, 211, 153, 0.15) !important; color: #6EE7B7 !important; border: 1px solid rgba(52, 211, 153, 0.3) !important; }
+.tag-rec { background: rgba(56, 189, 248, 0.15) !important; color: #7DD3FC !important; border: 1px solid rgba(56, 189, 248, 0.3) !important; }
+.tag-cert { background: rgba(250, 204, 21, 0.15) !important; color: #FDE047 !important; border: 1px solid rgba(250, 204, 21, 0.3) !important; }
+.tag-new { background: rgba(244, 63, 94, 0.15) !important; color: #FDA4AF !important; border: 1px solid rgba(244, 63, 94, 0.3) !important; }
+
+.floor-table { width:100%; border-collapse:collapse; font-size:.75rem; margin-top:.5rem; }
+.floor-table th {
+  padding:.6rem;
+  background:var(--color-background-secondary);
+  font-size:.65rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  color:var(--color-text-secondary);
+  text-align:left;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+.floor-table td {
+  padding:.6rem;
+  border-bottom: 1px solid var(--color-border-tertiary);
+  vertical-align:top;
+  line-height:1.5;
+  color: #D1D5DB;
+}
+.floor-table tr:last-child td { border-bottom:none; }
+.floor-table td strong { color: #fff; }
+.floor-badge {
+  display:inline-block;
+  font-size:.65rem;
+  font-weight:700;
+  padding:2px 8px;
+  border-radius:20px;
+  white-space:nowrap;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.func-list { display:flex; flex-direction:column; gap:.4rem; }
+.func-item {
+  display:flex;
+  align-items:baseline;
+  gap:.75rem;
+  padding:.6rem .8rem;
+  border-radius:8px;
+  background: var(--color-background-secondary) !important;
+  border: 1px solid rgba(255,255,255,0.03);
+  transition: background 0.2s;
+}
+.func-item:hover { background: rgba(255,255,255,0.08) !important; }
+.func-pct { font-weight:700; font-size:.85rem; width:70px; flex-shrink:0; color: #34D399 !important; text-shadow: 0 0 10px rgba(52,211,153,0.3); }
+.func-name { font-size:.8rem; font-weight:700; flex:1; color: #fff; }
+.func-m2 { font-size:.72rem; color:var(--color-text-secondary); width:90px; flex-shrink:0; text-align:right; font-weight: 600; }
+.func-note { font-size:.72rem; color:#9CA3AF; margin-top:.2rem; line-height: 1.4; }
+
+.alert {
+  padding:.8rem 1rem;
+  border-radius:8px;
+  margin:.75rem 0;
+  font-size:.75rem;
+  line-height:1.5;
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: var(--color-text-primary) !important;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+}
+.alert-add { border-left: 3px solid #34D399; }
+.alert-fix { border-left: 3px solid #F43F5E; }
+.alert-note { border-left: 3px solid #38BDF8; }
+.alert strong { color: #fff; }
+
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+.cert-item {
+  padding:.8rem 1rem;
+  border-radius:10px;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid var(--color-border-tertiary);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.cert-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.2);
+  box-shadow: 0 10px 20px -10px rgba(0,0,0,0.5);
+}
+.cert-name { font-size:.8rem; font-weight:700; color:#fff; }
+.cert-level { font-size:.72rem; color:var(--color-text-secondary); margin-top:.25rem; line-height: 1.4; }
+
+.summary-bar { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:1.5rem; }
+.sb-item {
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius:12px;
+  padding:12px 10px;
+  text-align:center;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+}
+.sb-val { font-size:16px; font-weight:700; color:#fff; text-shadow: 0 0 10px rgba(255,255,255,0.2); }
+.sb-lbl { font-size:.62rem; color:#9CA3AF; text-transform:uppercase; letter-spacing:.05em; margin-top:4px; font-weight: 600; }
+
+@media(max-width:768px){
+  .doc { margin: 0; border-radius: 0; border: none; backdrop-filter: none; background: rgba(0,0,0,0.8); }
+  .two-col{grid-template-columns:1fr}
+  .summary-bar{grid-template-columns:repeat(3,1fr)}
+  .param-grid{grid-template-columns:130px 1fr}
+}
+</style>
+
+<div class="doc">
+
+<div class="doc-header">
+  <div class="doc-label">Технічне завдання на архітектурне проєктування</div>
+  <div class="doc-title">Бізнес-центр <em>Межигірська</em><br>Концепція 6 — Периметральний блок</div>
+  <div class="doc-meta">
+    <span><strong>Адреса:</strong> м. Київ, вул. Межигірська</span>
+    <span><strong>Кадастр:</strong> 8000000000:85:288:0001</span>
+    <span><strong>Площа ділянки:</strong> 1,0134 га</span>
+    <span><strong>Клас:</strong> B+</span>
+    <span><strong>Стадія:</strong> Концептуальна аксонометрія</span>
+    <span><strong>Версія:</strong> 1.0 / 2025</span>
+  </div>
+</div>
+
+<!-- KPI SUMMARY -->
+<div class="summary-bar">
+  <div class="sb-item"><div class="sb-val">~5 000 м²</div><div class="sb-lbl">Площа забудови</div></div>
+  <div class="sb-item"><div class="sb-val">26 000+ м²</div><div class="sb-lbl">GLA (ціль)</div></div>
+  <div class="sb-item"><div class="sb-val">7 + 2 підз.</div><div class="sb-lbl">Поверховість</div></div>
+  <div class="sb-item"><div class="sb-val">82%+</div><div class="sb-lbl">Ефективність</div></div>
+  <div class="sb-item"><div class="sb-val">BREEAM Exc.</div><div class="sb-lbl">Сертифікація</div></div>
+</div>
+
+<!-- SECTION 1: МОРФОЛОГІЯ -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="section-num">01</div>
+    <div class="section-title">Морфологія та об'ємно-просторова концепція</div>
+    <span class="section-tag tag-req">Обов'язково</span>
+    <span style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
+  </div>
+  <div class="section-body open">
+    <div class="alert alert-note">
+      <strong>Концепція:</strong> Периметральний блок («колодець») — 4 крила однакової глибини 15–18 м навколо внутрішнього двору. Будівля орієнтована відповідно до форми ділянки (~45° до сторін світу). Форма підпорядковується кадастровому контуру, зберігаючи відступи 5 м від межі.
+    </div>
+    <div class="param-grid">
+      <div class="param-row"><div class="k">Тип морфології</div><div class="v">Периметральний блок (колодець) — 4 крила замикають внутрішній двір з усіх сторін</div></div>
+      <div class="param-row"><div class="k">Глибина крила</div><div class="v"><strong>15–18 м</strong> від зовнішнього фасаду до межі двору — забезпечує 100% денне освітлення всіх робочих місць (норма BREEAM: ≤8 м від вікна)</div></div>
+      <div class="param-row"><div class="k">Розташування ядер</div><div class="v"><strong>2 ядра — діагональне розташування</strong> у NW та SE кутах будівлі. Кожне ядро: 2 сходові клітини + 3–4 ліфти + МЗК + санвузли + технічні шахти. Розмір ядра: 14×14 м. ⚠️ Третє допоміжне ядро (сервісні ліфти) рекомендується розмістити у SW куті для logistики</div></div>
+      <div class="param-row"><div class="k">Площа забудови</div><div class="v"><strong>~5 000 м²</strong> (коефіцієнт забудови ~49–50% від 1,0134 га — в межах норми ≤60%)</div></div>
+      <div class="param-row"><div class="k">Внутрішній двір</div><div class="v"><strong>~2 500–3 000 м²</strong>. Відкритий до неба, доступний публічно з рівня 1-го поверху через наскрізний прохід з вул. Межигірська → двір → вул. Костянтинівська. <strong>Атріум до 2-го поверху</strong> (скляне накриття над частиною двору ~800–1 200 м²) — фаза 1. Решта двору — відкрита тераса</div></div>
+      <div class="param-row"><div class="k">Поверховість</div><div class="v"><strong>7 надземних поверхів + 2 підземних рівні</strong> (P-1 та P-2). Висота будівлі: ~27 м (≤27,0 м — містобудівне обмеження для Подолу)</div></div>
+      <div class="param-row"><div class="k">Висота поверхів</div><div class="v">1-й поверх (лобі): <strong>5,0 м</strong> у чистоті. Атріум: <strong>2 поверхи = 9,0–10,0 м</strong>. Типовий поверх 2–7: <strong>2,85–3,0 м</strong> у чистоті (3,70 м поверх-поверх). Технічний поверх: 2,8 м</div></div>
+      <div class="param-row"><div class="k">Покрівля</div><div class="v">50% — ресторан + тераси (відкриті та накриті). 30% — інженерні системи (VRF, DOAS, сонячні панелі). 20% — зелена покрівля (extensive green roof для BREEAM)</div></div>
+      <div class="param-row"><div class="k">Ландшафт</div><div class="v">Зелений буфер по периметру ділянки 5 м: кущі + дерева відповідно до ДБН. Велодоріжка уздовж фасаду вул. Межигірська. Публічна площа перед головним входом ~300–400 м²</div></div>
+    </div>
+    <div class="alert alert-add" style="margin-top:.6rem">
+      <strong>Конструктивна сітка колон:</strong> <strong>8,1×8,1 м</strong> або <strong>7,5×9,0 м</strong> (кратно 1,5 м). Це ключова вимога для гнучкості планування офісів та відповідності BREEAM. Прорахувати обидва варіанти.
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: ПІДЗЕМНІ РІВНІ -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="section-num">02</div>
+    <div class="section-title">Підземні рівні P-1 та P-2</div>
+    <span class="section-tag tag-req">Обов'язково</span>
+    <span style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
+  </div>
+  <div class="section-body open">
+    <table class="floor-table">
+      <tr><th>Рівень</th><th>Функція</th><th>Площа</th><th>Примітки</th></tr>
+      <tr>
+        <td><span class="floor-badge" style="background:#2C2A26;color:#F1EFE8">P-1</span></td>
+        <td>Паркінг (120–130 місць) + Велопарковка (50+ місць) + Душові/роздягальні для велосипедистів</td>
+        <td>~4 200 м²</td>
+        <td>EV-зарядки на 100% місць P-1 (норма BREEAM EV-ready). Окремий велосипедний пандус або вантажний ліфт</td>
+      </tr>
+      <tr>
+        <td><span class="floor-badge" style="background:#2C2A26;color:#F1EFE8">P-2</span></td>
+        <td>Паркінг (120–130 місць) + Технічні приміщення + BESS + Цивільне укриття</td>
+        <td>~4 200 м²</td>
+        <td>BESS: 500–800 кВт·год (резерв 4–8 год). Насосна станція. Резервуар питної води 100 м³. Резервуар дощової води (збір з покрівлі) 50–80 м³. Дизельний генератор 800–1200 кВА. Укриття ЦО: ≥місткість 100% персоналу будівлі (~800–1 200 осіб)</td>
+      </tr>
+    </table>
+    <div class="alert alert-add" style="margin-top:.6rem">
+      <strong>Резерв паркомісць:</strong> Загальна кількість — <strong>~260 місць</strong> (норма 1 місце/100 м² GLA), розподілено: P-1 ~130 місць + P-2 ~130 місць. З них: 20% EV-зарядки, 5% для маломобільних груп (ДБН В.2.2-40). BESS на P-2 — окремий відсік з вогнезахисними конструкціями FR 120.
+    </div>
+    <div class="alert alert-fix">
+      <strong>Водопостачання:</strong> <strong>100 м³ = питна вода</strong> (достатньо для 3–5 діб автономії). Додатково: <strong>50–80 м³ дощова вода</strong> — для поливу озеленення та технічних потреб (туалети). Насосна станція підвищення тиску — обов'язково окремо від резервуарів.
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: ПОВЕРХОВИЙ РОЗПОДІЛ -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="section-num">03</div>
+    <div class="section-title">Поверховий розподіл функцій</div>
+    <span class="section-tag tag-req">Обов'язково</span>
+    <span style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
+  </div>
+  <div class="section-body open">
+    <table class="floor-table">
+      <tr><th>Поверх</th><th>Функція</th><th>GLA</th><th>% від GLA</th></tr>
+      <tr>
+        <td><span class="floor-badge" style="background:#EF9F27;color:#412402">1-й</span></td>
+        <td>
+          Лобі/рецепція · Ритейл · Кафе · Бар-лаунж · Фудкорт/їдальня · Івент/ком'юніті простір · Велопарковка+душові · Нова пошта, банк, хімчистка · Службові приміщення · <strong>Атріум (входить у двір)</strong>
+        </td>
+        <td>~3 800–4 200 м²</td>
+        <td>100% публічний/сервісний</td>
+      </tr>
+      <tr>
+        <td><span class="floor-badge" style="background:#378ADD;color:#E6F1FB">2-й</span></td>
+        <td>Flex / Коворкінг (повністю) + Атріум (відкрите балконне перекриття над двором)</td>
+        <td>~3 200 м²</td>
+        <td>Flex ~25% GLA (тут і частково на 3-му)</td>
+      </tr>
+      <tr>
+        <td><span class="floor-badge" style="background:#639922;color:#fff">3-й</span></td>
+        <td>Flex / Коворкінг (залишок) + Конференц-блок (Мала, Середня зали) + Івент-хол малий</td>
+        <td>~3 200 м²</td>
+        <td>Конференц: 3–4% GLA</td>
+      </tr>
+      <tr>
+        <td><span class="floor-badge" style="background:#639922;color:#fff">4-й</span></td>
+        <td>Офіси (постійна оренда, open space + кабінетний). Конференц: Велика зала + Івент-хол великий</td>
+        <td>~3 400 м²</td>
+        <td>Офіси: 50% GLA ÷ 5 пов.</td>
+      </tr>
+      <tr>
+        <td><span class="floor-badge" style="background:#639922;color:#fff">5-й</span></td>
+        <td>Офіси (постійна оренда). Amenity: Wellness/медитаційні кімнати, biohacking room</td>
+        <td>~3 400 м²</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><span class="floor-badge" style="background:#639922;color:#fff">6-й</span></td>
+        <td>Офіси (постійна оренда). Amenity: Фітнес-центр (повний поверх, ~400–500 м²) + душові</td>
+        <td>~3 400 м²</td>
+        <td>Фітнес: 2% GLA</td>
+      </tr>
+      <tr>
+        <td><span class="floor-badge" style="background:#1D9E75;color:#fff">7-й</span></td>
+        <td>Офіси premium (лише ~50% площі поверху) + Ресторан + Бар-лаунж з виходом на тераси + Виробничі/творчі простори (3D принтери, студія звукозапису, лабораторія)</td>
+        <td>~2 500 м²</td>
+        <td>F&B верхній: 3–5% GLA</td>
+      </tr>
+      <tr>
+        <td><span class="floor-badge" style="background:#2C2A26;color:#F1EFE8">Покрівля</span></td>
+        <td><strong>50%</strong>: Ресторан (скляна надбудова) + Відкриті тераси + Зелена зона. <strong>30%</strong>: Сонячні панелі + VRF-конденсатори. <strong>20%</strong>: Extensive green roof</td>
+        <td>~2 500 м²</td>
+        <td>Нежитлова зона</td>
+      </tr>
+    </table>
+    <div class="alert alert-fix" style="margin-top:.6rem">
+      <strong>Amenity spaces:</strong> <strong>F&B = частина Amenity (10–15% GLA)</strong>. Окремо виноситься івент-блок (3–4%) і фітнес (2%). Все разом = Amenity ~15–18% GLA.
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: ПРОГРАМА 1-го ПОВЕРХУ -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="section-num">04</div>
+    <div class="section-title">Програма активного 1-го поверху (партер)</div>
+    <span class="section-tag tag-req">Обов'язково</span>
+    <span style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
+  </div>
+  <div class="section-body open">
+    <div class="alert alert-note" style="margin-bottom:.6rem">
+      Весь перший поверх має функціонувати як <strong>«міська вітальня»</strong>. Внутрішній двір відкритий для публіки — наскрізний прохід вул. Межигірська → двір → вул. Костянтинівська. Фасад: 70%+ скління на рівні 1-го поверху. Висота приміщень: 5,0 м (подвійний об'єм лобі та атріум).
+    </div>
+    <div class="func-list">
+      <div class="func-item" style="background:#EAF3DE">
+        <div class="func-pct" style="color:#27500A">8–10%</div>
+        <div><div class="func-name">Лобі / рецепція / консьєрж</div><div class="func-note">Висота 5 м, вхід з вул. Межигірська. Ресепшн + зона очікування + арт-інсталяція. Окремий вхід у коворкінг. Обов'язково: турнікети + СКУД</div></div>
+        <div class="func-m2">~320–400 м²</div>
+      </div>
+      <div class="func-item">
+        <div class="func-pct" style="color:#639922">10–12%</div>
+        <div><div class="func-name">Ритейл / сервіси</div><div class="func-note">Модуль 5–8 м фасаду. Нова пошта (40–60 м²), банк/банкомат (80–120 м²), хімчистка (30–50 м²), мікромаркет 24/7 (60–100 м²), аптека/wellness-шоп (40–80 м²)</div></div>
+        <div class="func-m2">~400–480 м²</div>
+      </div>
+      <div class="func-item" style="background:#FAEEDA">
+        <div class="func-pct" style="color:#633806">5–7%</div>
+        <div><div class="func-name">Кафе / спеціалізована кав'ярня</div><div class="func-note">Grab-and-go + посадка. Вихід на вулицю та у двір. Літня тераса. Доступно до 22:00</div></div>
+        <div class="func-m2">~200–280 м²</div>
+      </div>
+      <div class="func-item" style="background:#FAEEDA">
+        <div class="func-pct" style="color:#633806">5–8%</div>
+        <div><div class="func-name">Бар-лаунж</div><div class="func-note">Вечірній формат. Виходи на двір (літній сезон). Трансформується для подій. М'які зони + барна стійка</div></div>
+        <div class="func-m2">~200–320 м²</div>
+      </div>
+      <div class="func-item" style="background:#FAEEDA">
+        <div class="func-pct" style="color:#633806">10–12%</div>
+        <div><div class="func-name">Фудкорт / їдальня</div><div class="func-note">150–200 посадок. Норма 1,5–2,0 м²/місце. Денний формат (8:00–20:00). Кілька стрітфуд-концептів. Окрема кухонна зона ~80–120 м²</div></div>
+        <div class="func-m2">~400–480 м²</div>
+      </div>
+      <div class="func-item" style="background:#E6F1FB">
+        <div class="func-pct" style="color:#0C447C">8–10%</div>
+        <div><div class="func-name">Івент / ком'юніті простір</div><div class="func-note">Трансформований простір: виставки, маркети, лекції, концерти. Рухомі перегородки. Прямий доступ з двору. Оренда погодинно/поденно</div></div>
+        <div class="func-m2">~320–400 м²</div>
+      </div>
+      <div class="func-item">
+        <div class="func-pct">1–2%</div>
+        <div><div class="func-name">Велопаркування + душові</div><div class="func-note">50+ місць (з P-1 — загалом 100+). Ремонтна станція, насос, шафки. 8–12 душових кабін + роздягальні</div></div>
+        <div class="func-m2">~100–150 м²</div>
+      </div>
+      <div class="func-item">
+        <div class="func-pct">3–5%</div>
+        <div><div class="func-name">Службові / технічні</div><div class="func-note">Комора, господарські, охорона, ВРЩ, серверна, МЗК першого поверху</div></div>
+        <div class="func-m2">~200–300 м²</div>
+      </div>
+    </div>
+    <div class="alert alert-add" style="margin-top:.65rem">
+      <strong>Додаткові вимоги:</strong> Обов'язково передбачити <strong>вантажний ліфт 2000 кг</strong> для постачання ресторану на покрівлі та коворкінгу. <strong>Окремий евакуаційний вихід</strong> з кожного блоку на відкрите повітря. <strong>Інклюзивний доступ</strong> ДБН В.2.2-40 — пандуси, тактильні доріжки, ліфт до P-1.
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: AMENITY + FLEX -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="section-num">05</div>
+    <div class="section-title">Amenity Spaces + Flex/Coworking (12–18% GLA)</div>
+    <span class="section-tag tag-rec">Рекомендовано</span>
+    <span style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-secondary);margin-bottom:.45rem">Flex / Coworking — 25% GLA (~6 500 м²)</div>
+        <div class="func-list">
+          <div class="func-item"><div class="func-pct" style="color:#378ADD">Hot desks</div><div><div class="func-name">Відкритий простір з резервацією</div><div class="func-note">Стандарт: 8–10 м²/стіл, безфіксовані місця</div></div></div>
+          <div class="func-item"><div class="func-pct" style="color:#378ADD">Приватні офіси</div><div><div class="func-name">2–20 осіб, закриті кімнати</div><div class="func-note">Строк від 1 місяця, готові до в'їзду</div></div></div>
+          <div class="func-item"><div class="func-pct" style="color:#378ADD">Phone booths</div><div><div class="func-name">Ізольовані кабінки 1–2 ос.</div><div class="func-note">Норма: 1 кабінка / 10 осіб відкр. простору</div></div></div>
+          <div class="func-item"><div class="func-pct" style="color:#378ADD">Lounge zones</div><div><div class="func-name">Неформальні робочі зони</div><div class="func-note">М'які меблі, стоячі столи, зарядки</div></div></div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-secondary);margin-bottom:.45rem">Amenity Spaces — 12–15% GLA</div>
+        <div class="func-list">
+          <div class="func-item" style="background:#EAF3DE"><div class="func-pct" style="color:#27500A">2%</div><div><div class="func-name">Фітнес-центр + SPA</div><div class="func-note">400–500 м². Кардіо, ваги, йога, душові. 6 пов.</div></div></div>
+          <div class="func-item" style="background:#EAF3DE"><div class="func-pct" style="color:#27500A">1%</div><div><div class="func-name">Wellness / Biohacking</div><div class="func-note">Кімнати медитації, sensory deprivation, криокамера, IV-терапія</div></div></div>
+          <div class="func-item" style="background:#EAF3DE"><div class="func-pct" style="color:#27500A">1%</div><div><div class="func-name">Maker Space / Лабораторія</div><div class="func-note">3D принтери, CNC, студія звукозапису, відеостудія. 5 пов.</div></div></div>
+          <div class="func-item" style="background:#EAF3DE"><div class="func-pct" style="color:#27500A">3–4%</div><div><div class="func-name">F&B верхній рівень</div><div class="func-note">Ресторан на покрівлі + тераси (7 пов. + дах)</div></div></div>
+          <div class="func-item" style="background:#EAF3DE"><div class="func-pct" style="color:#27500A">3–4%</div><div><div class="func-name">Конференц / Івент</div><div class="func-note">4 зали: мала 20 ос., середня 60 ос., велика 150 ос., мультифункц. хол 300 ос. (3 пов.)</div></div></div>
+          <div class="func-item" style="background:#EAF3DE"><div class="func-pct" style="color:#27500A">1%</div><div><div class="func-name">Дахова тераса</div><div class="func-note">Відкрита зона відпочинку, Wi-Fi, зелень. 50% покрівлі</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: ТЕХНОЛОГІЇ ТА ІНЖЕНЕРІЯ -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="section-num">06</div>
+    <div class="section-title">Інженерні системи та технологічна платформа</div>
+    <span class="section-tag tag-cert">BREEAM / WELL</span>
+    <span style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
+  </div>
+  <div class="section-body">
+    <div class="param-grid">
+      <div class="param-row"><div class="k">HVAC</div><div class="v"><strong>VRF (Variable Refrigerant Flow) + DOAS</strong> (Dedicated Outdoor Air System). Daikin або Mitsubishi Electric, cold-climate rated до –25°C. Зонування кожні 50–100 м². Теплообмінники з рекуперацією ≥80%</div></div>
+      <div class="param-row"><div class="k">BMS / AI</div><div class="v"><strong>Schneider EcoStruxure</strong> або Siemens Desigo CC. IoT-датчики occupancy (1 датчик / 20 м²). Digital twin будівлі. Мобільний додаток орендаря (бронювання кімнат, температура, освітлення)</div></div>
+      <div class="param-row"><div class="k">Освітлення</div><div class="v"><strong>DALI-2</strong> з human-centric функцією. Тунабельна кольорова температура 2700–6500K. Циркадні ритми. Датчики присутності та денного світла. Ціль: ≤3 кВт·год/м²/рік</div></div>
+      <div class="param-row"><div class="k">Сонячні панелі</div><div class="v">На покрівлі (~700–900 м² панелей). Потужність ~100–140 кВт. Покриває ~15–20% споживання будівлі. Monolithic bifacial panels</div></div>
+      <div class="param-row"><div class="k">BESS</div><div class="v">500–800 кВт·год LFP (lithium iron phosphate). Рівень P-2, вогнезахисний відсік FR120. Автономія критичних систем: 4–8 год</div></div>
+      <div class="param-row"><div class="k">Вода</div><div class="v">Система збору дощової води 50–80 м³ (для поливу + туалети). Питний резервуар 100 м³ (P-2). Очисна станція. Система моніторингу споживання (лічильники на кожному поверсі)</div></div>
+      <div class="param-row"><div class="k">Фасад</div><div class="v">WWR (Window-to-Wall Ratio): <strong>45–55%</strong> на N/NW, <strong>35–45%</strong> на S/SE/SW. Low-E скло U≤1,1 Вт/м²К, SHGC 0,25–0,40. <strong>Зовнішній автоматизований сонцезахист</strong> (lamellar brise-soleil) на S/SE/SW фасадах. Unitized curtain wall система</div></div>
+      <div class="param-row"><div class="k">Генератор</div><div class="v">Дизельний генератор <strong>800–1 200 кВА</strong>, 100% потужності будівлі. Запас палива на 72 год. Автоматичне введення резерву (АВР) ≤10 сек</div></div>
+      <div class="param-row"><div class="k">Starlink / Інтернет</div><div class="v">Мінімум 2 провайдери оптоволокно + Starlink Enterprise як резерв. Корпоративна Wi-Fi 6E мережа на всіх поверхах</div></div>
+      <div class="param-row"><div class="k">EV-зарядки</div><div class="v">100% місць P-1 — кабельна підготовка. 20–30 активних зарядок AC 22 кВт + 4–6 DC fast charger 50–150 кВт. Управління через BMS</div></div>
+  </div>
+</div>
+
+<!-- SECTION 7: СЕРТИФІКАЦІЯ -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="section-num">07</div>
+    <div class="section-title">Стандарти сертифікації та проєктування</div>
+    <span class="section-tag tag-cert">Цілі</span>
+    <span style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div class="cert-item">
+        <div class="cert-name">BREEAM Excellent</div>
+        <div class="cert-level">Ціль: 70%+ балів. Обов'язково залучити BREEAM-акредитованого асесора на стадії концепту. Ключові категорії: Energy (25%+), Water (6%+), Materials, Ecology</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-name">WELL Building Standard v2</div>
+        <div class="cert-level">Ціль: Gold або Platinum. Фокус: Air, Water, Nourishment, Light, Movement, Thermal Comfort, Mind. CO₂ &lt;800 ppm у всіх офісах</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-name">Human-Centric Design</div>
+        <div class="cert-level">Gensler Workplace Survey principles. Кожне робоче місце ≤8 м від вікна. Зони тиші + зони колаборації на кожному поверсі. Biophilic дизайн (рослини, природні матеріали, вода)</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-name">ДБН та Норми України</div>
+        <div class="cert-level">ДБН В.2.2-40:2018 (інклюзивність). ДБН В.2.5-67 (пожежна безпека). ДБН В.2.5-28 (природне освітлення). Висота будівлі ≤27,0 м (Поділ)</div>
+      </div>
+      <div class="cert-item" style="grid-column:1/-1">
+        <div class="cert-name">ESG / Net Zero Ready</div>
+        <div class="cert-level">EU EPBD Recast 2024: нові будівлі Zero-Emission з 2030 р. — закласти в конструкцію вже зараз. Embodied carbon: специфікація низьковуглецевого бетону (GGBS ≥30%) та переробленої сталі. Готовність до встановлення додаткових СЕС у майбутньому</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 8: ЗАВДАННЯ АРХІТЕКТОРУ -->
+<div class="section">
+  <div class="section-head" onclick="toggle(this)">
+    <div class="section-num">08</div>
+    <div class="section-title">Завдання архітектору — склад матеріалів</div>
+    <span class="section-tag tag-new">Нова секція</span>
+    <span style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
+  </div>
+  <div class="section-body">
+    <div class="param-grid">
+      <div class="param-row"><div class="k">Формат подачі</div><div class="v">Концептуальна аксонометрія (3D вид зверху під кутом 30/45°). Масштаб 1:500 або 1:200 для деталей. Формат: PDF + DWG/Archicad + рендер JPG (300 dpi)</div></div>
+      <div class="param-row"><div class="k">Обов'язковий склад</div><div class="v">1. Аксонометрія всієї будівлі (розрізана по горизонталі — «вибуховий вигляд» по поверхах). 2. Схема генплану М1:500 з позначенням входів, зеленої зони, паркінгу. 3. Схема типового поверху 3–6. 4. Схема 1-го поверху з функціями. 5. Схема підземних рівнів (P-1, P-2). 6. Схема покрівлі. 7. Розріз по атріуму/двору</div></div>
+      <div class="param-row"><div class="k">Бажаний склад</div><div class="v">Фасади (4 сторони). 3–5 візуалізацій (зовнішній вигляд, двір, лобі, коворкінг, покрівля). Схема функціонального зонування по поверхах (кольорова). Баланс площ (TEP з розбивкою GLA по функціях)</div></div>
+      <div class="param-row"><div class="k">Строки</div><div class="v">Концептуальна аксонометрія + генплан: <strong>2–3 тижні</strong>. Повний концепт-пакет: 4–6 тижнів. Рекомендую проміжний огляд на тижні 1 та 3</div></div>
+      <div class="param-row"><div class="k">Референси</div><div class="v">Metropolitan Warsaw (Foster+Partners, 2003). Forest Office Campus Warsaw (MVRDV, 2020). The Edge Amsterdam (PLP, 2015). Astarta Creative Quarter Kyiv (FORT, 2018). Porsche Engineering Center Weissach (Henn, 2018)</div></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+<script>
+function toggle(el){
+  const body=el.nextElementSibling;
+  const arr=el.querySelector('span:last-child');
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  if(arr)arr.textContent=isOpen?'▼':'▲';
+}
+// Open all on load
+document.querySelectorAll('.section-body').forEach(b=>{
+  if(!b.classList.contains('open')) b.classList.add('open');
+  const arr=b.previousElementSibling?.querySelector('span:last-child');
+  if(arr)arr.textContent='▲';
+});
+</script>
