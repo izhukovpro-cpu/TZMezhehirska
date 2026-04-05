@@ -1,149 +1,152 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ТЗ — Бізнес-центр Межигірська</title>
+</head>
+<body>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,600;1,400;1,600&family=Manrope:wght@400;500;600;700&display=swap');
 
 :root {
-  --color-text-primary: #F9FAFB;
-  --color-text-secondary: #9CA3AF;
-  --color-border-tertiary: rgba(255, 255, 255, 0.1);
-  --color-background-secondary: rgba(255, 255, 255, 0.04);
+  --color-text-primary: #1C1B19;
+  --color-text-secondary: #6B7280;
+  --color-border-tertiary: rgba(0, 0, 0, 0.08);
+  --color-background-secondary: rgba(0, 0, 0, 0.03);
+  --accent: #2A5E0A;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
 
 body {
-  font-family:'Syne',sans-serif;
+  font-family:'Manrope',sans-serif;
   color:var(--color-text-primary);
-  font-size:13px;
-  line-height:1.6;
-  background: url('bg.png') center/cover fixed no-repeat;
-  position: relative;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, rgba(8, 11, 18, 0.85), rgba(0, 0, 0, 0.9));
-  z-index: -1;
+  font-size:14px;
+  line-height:1.65;
+  background: #EEF0EB;
 }
 
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+::-webkit-scrollbar-track { background: #E5E7E2; }
+::-webkit-scrollbar-thumb { background: #BFC2BB; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #A5A9A0; }
 
 .doc {
   max-width:900px;
   margin:2.5rem auto;
   padding:2rem 2.5rem;
-  background: rgba(20, 25, 35, 0.45);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  background: #FFFFFF;
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 20px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255,255,255,0.05);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
 }
 
 .doc-header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
   padding-bottom:1.5rem;
   margin-bottom:1.5rem;
   position: relative;
 }
 .doc-label {
-  font-size:.7rem;
+  font-size:.72rem;
   font-weight:700;
   letter-spacing:.15em;
   text-transform:uppercase;
-  color:#34D399;
+  color:var(--accent);
   margin-bottom:.4rem;
-  text-shadow: 0 0 10px rgba(52,211,153,0.3);
 }
 .doc-title {
-  font-family:'DM Serif Display',serif;
-  font-size:2.2rem;
+  font-family:'Cormorant',serif;
+  font-size:2.4rem;
   line-height:1.15;
-  color:#fff;
-  letter-spacing: 0.02em;
+  color:#1C1B19;
+  letter-spacing: 0.01em;
 }
 .doc-title em {
   font-style:italic;
-  color:#34D399;
+  color:var(--accent);
 }
 .doc-meta {
   display:flex;
   flex-wrap:wrap;
   gap:1.5rem;
   margin-top:1rem;
-  font-size:.75rem;
+  font-size:.85rem;
   color:var(--color-text-secondary);
 }
 .doc-meta span strong {
-  color:#E5E7EB;
-  font-weight:600;
+  color:#1C1B19;
+  font-weight:700;
 }
 
 .section {
-  margin-bottom:1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(0, 0, 0, 0.3);
+  margin-bottom:1rem;
+  border: 1px solid rgba(0,0,0,0.09);
+  background: #FFFFFF;
   border-radius:12px;
   overflow:hidden;
-  transition: all 0.3s ease;
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .section:hover {
-  border-color: rgba(255, 255, 255, 0.15);
-  background: rgba(0, 0, 0, 0.4);
+  border-color: rgba(42,94,10,0.25);
+  box-shadow: 0 4px 16px rgba(42,94,10,0.07);
 }
 .section-head {
   display:flex;
   align-items:center;
   gap:.75rem;
-  padding:.8rem 1.2rem;
-  background:var(--color-background-secondary);
+  padding:.85rem 1.2rem;
+  background: #F7F8F5;
   cursor:pointer;
   user-select:none;
+  border-bottom: 1px solid transparent;
+  outline: none;
+}
+.section-head[aria-expanded="true"] {
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+.section-head:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--accent);
 }
 .section-num {
-  font-family:'DM Serif Display',serif;
-  font-size:1.2rem;
-  color:#34D399;
-  width:28px;
+  font-family:'Cormorant',serif;
+  font-size:1.3rem;
+  color:var(--accent);
+  width:30px;
   flex-shrink:0;
-  text-shadow: 0 0 10px rgba(52,211,153,0.3);
 }
 .section-title {
-  font-size:.85rem;
+  font-size:.82rem;
   font-weight:700;
-  letter-spacing:.05em;
+  letter-spacing:.06em;
   text-transform:uppercase;
-  color:var(--color-text-primary);
+  color:#1C1B19;
   flex:1;
 }
-.section-tag {
-  font-size:.65rem;
-  font-weight:600;
-  padding:3px 10px;
-  border-radius:20px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+.section-body {
+  display: block;
+  height: 0;
+  overflow: hidden;
+  padding: 0 1.2rem;
+  opacity: 0;
+  transition: height 0.36s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.36s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.28s ease;
 }
-.section-body { padding:1rem 1.2rem; display:none; }
-.section-body.open { display:block; animation: fadeIn 0.4s ease forwards; }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-5px); }
-  to { opacity: 1; transform: translateY(0); }
+.section-body.open {
+  height: auto;
+  padding: 1.1rem 1.2rem;
+  overflow: visible;
+  opacity: 1;
 }
 
-.param-grid { display:grid; grid-template-columns:180px 1fr; gap:0; }
+.param-grid { display:grid; grid-template-columns:190px 1fr; gap:0; }
 .param-row { display:contents; }
 .param-row .k {
-  padding:.6rem .6rem .6rem 0;
-  font-weight:600;
+  padding:.65rem .65rem .65rem 0;
+  font-weight:700;
   color:var(--color-text-secondary);
   font-size:.72rem;
   border-bottom: 1px solid var(--color-border-tertiary);
@@ -151,114 +154,161 @@ body::before {
   letter-spacing:.05em;
 }
 .param-row .v {
-  padding:.6rem 0;
+  padding:.65rem 0;
   border-bottom: 1px solid var(--color-border-tertiary);
-  font-size:.8rem;
-  color:#E5E7EB;
+  font-size:.82rem;
+  color:#1C1B19;
 }
 .param-row:last-child .k, .param-row:last-child .v { border-bottom:none; }
-.param-row .v strong { color: #fff; text-shadow: 0 0 8px rgba(255,255,255,0.2); }
+.param-row .v strong { color: #1C1B19; }
 
-.tag-req { background: rgba(52, 211, 153, 0.15) !important; color: #6EE7B7 !important; border: 1px solid rgba(52, 211, 153, 0.3) !important; }
-.tag-rec { background: rgba(56, 189, 248, 0.15) !important; color: #7DD3FC !important; border: 1px solid rgba(56, 189, 248, 0.3) !important; }
-.tag-cert { background: rgba(250, 204, 21, 0.15) !important; color: #FDE047 !important; border: 1px solid rgba(250, 204, 21, 0.3) !important; }
-.tag-new { background: rgba(244, 63, 94, 0.15) !important; color: #FDA4AF !important; border: 1px solid rgba(244, 63, 94, 0.3) !important; }
-
-.floor-table { width:100%; border-collapse:collapse; font-size:.75rem; margin-top:.5rem; }
+.floor-table { width:100%; border-collapse:collapse; font-size:.78rem; margin-top:.5rem; }
 .floor-table th {
-  padding:.6rem;
-  background:var(--color-background-secondary);
-  font-size:.65rem;
+  padding:.6rem .65rem;
+  background:#F7F8F5;
+  font-size:.67rem;
   font-weight:700;
   text-transform:uppercase;
   letter-spacing:.08em;
   color:var(--color-text-secondary);
   text-align:left;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 .floor-table td {
-  padding:.6rem;
+  padding:.6rem .65rem;
   border-bottom: 1px solid var(--color-border-tertiary);
   vertical-align:top;
-  line-height:1.5;
-  color: #D1D5DB;
+  line-height:1.55;
+  color:#1C1B19;
 }
 .floor-table tr:last-child td { border-bottom:none; }
-.floor-table td strong { color: #fff; }
+.floor-table tr:nth-child(even) td { background:#FAFAF8; }
+.floor-table td strong { color:#1C1B19; font-weight:700; }
 .floor-badge {
   display:inline-block;
-  font-size:.65rem;
+  font-size:.67rem;
   font-weight:700;
-  padding:2px 8px;
+  padding:3px 9px;
   border-radius:20px;
   white-space:nowrap;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-  border: 1px solid rgba(255,255,255,0.1);
 }
 
-.func-list { display:flex; flex-direction:column; gap:.4rem; }
+.func-list { display:flex; flex-direction:column; gap:.35rem; }
 .func-item {
   display:flex;
   align-items:baseline;
   gap:.75rem;
-  padding:.6rem .8rem;
+  padding:.65rem .85rem;
   border-radius:8px;
-  background: var(--color-background-secondary) !important;
-  border: 1px solid rgba(255,255,255,0.03);
-  transition: background 0.2s;
+  background: #F7F8F5 !important;
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: background 0.15s;
 }
-.func-item:hover { background: rgba(255,255,255,0.08) !important; }
-.func-pct { font-weight:700; font-size:.85rem; width:70px; flex-shrink:0; color: #34D399 !important; text-shadow: 0 0 10px rgba(52,211,153,0.3); }
-.func-name { font-size:.8rem; font-weight:700; flex:1; color: #fff; }
-.func-m2 { font-size:.72rem; color:var(--color-text-secondary); width:90px; flex-shrink:0; text-align:right; font-weight: 600; }
-.func-note { font-size:.72rem; color:#9CA3AF; margin-top:.2rem; line-height: 1.4; }
+.func-item:hover { background: #EFF1EC !important; }
+.func-pct { font-weight:700; font-size:.85rem; width:70px; flex-shrink:0; color:var(--accent) !important; }
+.func-name { font-size:.8rem; font-weight:700; flex:1; color:#1C1B19; }
+.func-m2 { font-size:.74rem; color:var(--color-text-secondary); width:90px; flex-shrink:0; text-align:right; font-weight:600; }
+.func-note { font-size:.73rem; color:#6B7280; margin-top:.2rem; line-height:1.45; }
 
 .alert {
-  padding:.8rem 1rem;
+  padding:.85rem 1rem;
   border-radius:8px;
   margin:.75rem 0;
-  font-size:.75rem;
-  line-height:1.5;
-  background: rgba(255, 255, 255, 0.05) !important;
-  color: var(--color-text-primary) !important;
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
+  font-size:.78rem;
+  line-height:1.55;
+  background: #F7F8F5 !important;
+  color:var(--color-text-primary) !important;
+  border: 1px solid rgba(0,0,0,0.06);
 }
-.alert-add { border-left: 3px solid #34D399; }
-.alert-fix { border-left: 3px solid #F43F5E; }
-.alert-note { border-left: 3px solid #38BDF8; }
-.alert strong { color: #fff; }
+.alert-add { border-left: 3px solid var(--accent); }
+.alert-fix { border-left: 3px solid #DC2626; }
+.alert-note { border-left: 3px solid #0369A1; }
+.alert strong { color:#1C1B19; }
+
+/* ── PLAN SVG ── */
+.plan-wrap { background: #F4F6F0; border: 1px solid rgba(0,0,0,0.08); border-radius: 10px; padding: .85rem; margin-bottom: .85rem; }
+
+/* ── PARAM TABLE ── */
+.ptable { width:100%; border-collapse:collapse; font-size:.78rem; margin-bottom:.85rem; }
+.ptable tr { border-bottom: 1px solid rgba(0,0,0,0.07); }
+.ptable tr:last-child { border-bottom: none; }
+.ptable td { padding:.55rem .55rem; vertical-align:top; line-height:1.5; }
+.ptable tr:nth-child(even) { background: #F7F8F5; }
+.ptable .pk { font-size:.67rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--color-text-secondary); width:140px; background: #EEF4E8; }
+.ptable .pv { color:#1C1B19; }
+.ptable .pv strong { color:#1C1B19; }
 
 .two-col { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
 .cert-item {
-  padding:.8rem 1rem;
+  padding:.9rem 1rem;
   border-radius:10px;
-  background: rgba(0,0,0,0.2);
-  border: 1px solid var(--color-border-tertiary);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #F7F8F5;
+  border: 1px solid rgba(0,0,0,0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .cert-item:hover {
   transform: translateY(-2px);
-  border-color: rgba(255,255,255,0.2);
-  box-shadow: 0 10px 20px -10px rgba(0,0,0,0.5);
+  border-color: rgba(42,94,10,0.2);
+  box-shadow: 0 6px 16px rgba(42,94,10,0.08);
 }
-.cert-name { font-size:.8rem; font-weight:700; color:#fff; }
-.cert-level { font-size:.72rem; color:var(--color-text-secondary); margin-top:.25rem; line-height: 1.4; }
+.cert-name { font-size:.82rem; font-weight:700; color:#1C1B19; }
+.cert-level { font-size:.75rem; color:var(--color-text-secondary); margin-top:.3rem; line-height:1.5; }
 
 .summary-bar { display:grid; grid-template-columns:repeat(5,1fr); gap:8px; margin-bottom:1.5rem; }
 .sb-item {
-  background: rgba(0,0,0,0.3);
-  border: 1px solid rgba(255,255,255,0.08);
+  background: #F4F6F0;
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius:12px;
-  padding:12px 10px;
+  padding:14px 12px;
   text-align:center;
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.05);
 }
-.sb-val { font-size:16px; font-weight:700; color:#fff; text-shadow: 0 0 10px rgba(255,255,255,0.2); }
-.sb-lbl { font-size:.62rem; color:#9CA3AF; text-transform:uppercase; letter-spacing:.05em; margin-top:4px; font-weight: 600; }
+.sb-val { font-family:'Cormorant',serif; font-size:1.05rem; font-weight:700; color:#1C1B19; }
+.sb-lbl { font-size:.7rem; color:var(--color-text-secondary); text-transform:uppercase; letter-spacing:.05em; margin-top:5px; font-weight:600; }
+
+/* ── ENTRANCE ANIMATIONS ── */
+@keyframes docEnter {
+  from { opacity:0; transform:translateY(18px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes kpiUp {
+  from { opacity:0; transform:translateY(10px) scale(0.96); }
+  to   { opacity:1; transform:translateY(0)   scale(1); }
+}
+
+.doc { animation: docEnter 0.55s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+.sb-item { animation: kpiUp 0.4s ease both; }
+.sb-item:nth-child(1) { animation-delay:.12s; }
+.sb-item:nth-child(2) { animation-delay:.18s; }
+.sb-item:nth-child(3) { animation-delay:.24s; }
+.sb-item:nth-child(4) { animation-delay:.30s; }
+.sb-item:nth-child(5) { animation-delay:.36s; }
+
+/* ── SECTION LEFT-BORDER INDICATOR ── */
+.section { position:relative; }
+.section::before {
+  content:'';
+  position:absolute;
+  left:0; top:0; bottom:0;
+  width:3px;
+  background: var(--accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.25s ease;
+  border-radius: 0 2px 2px 0;
+}
+.section:hover::before { transform: scaleY(1); }
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  .doc, .sb-item { animation: none; }
+  .section-body { transition: none; }
+  .section::before { transition: none; }
+}
 
 @media(max-width:768px){
-  .doc { margin: 0; border-radius: 0; border: none; backdrop-filter: none; background: rgba(0,0,0,0.8); }
+  body { font-size:15px; }
+  .doc { margin:0; border-radius:0; border:none; }
   .two-col{grid-template-columns:1fr}
   .summary-bar{grid-template-columns:repeat(3,1fr)}
   .param-grid{grid-template-columns:130px 1fr}
@@ -269,7 +319,7 @@ body::before {
 
 <div class="doc-header">
   <div class="doc-label">Технічне завдання на архітектурне проєктування</div>
-  <div class="doc-title">Бізнес-центр <em>Межигірська</em><br>Концепція 6 — Периметральний блок</div>
+  <div class="doc-title">Бізнес-центр <em>Межигірська</em></div>
   <div class="doc-meta">
     <span><strong>Адреса:</strong> м. Київ, вул. Межигірська</span>
     <span><strong>Кадастр:</strong> 8000000000:85:288:0001</span>
@@ -291,27 +341,85 @@ body::before {
 
 <!-- SECTION 1: МОРФОЛОГІЯ -->
 <div class="section">
-  <div class="section-head" onclick="toggle(this)">
+  <div class="section-head" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
     <div class="section-num">01</div>
     <div class="section-title">Морфологія та об'ємно-просторова концепція</div>
-    <span class="section-tag tag-req">Обов'язково</span>
-    <span style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
+    <span aria-hidden="true" style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
   </div>
   <div class="section-body open">
-    <div class="alert alert-note">
-      <strong>Концепція:</strong> Периметральний блок («колодець») — 4 крила однакової глибини 15–18 м навколо внутрішнього двору. Будівля орієнтована відповідно до форми ділянки (~45° до сторін світу). Форма підпорядковується кадастровому контуру, зберігаючи відступи 5 м від межі.
+
+    <div class="plan-wrap">
+      <svg viewBox="0 0 580 320" width="100%" style="display:block">
+        <defs>
+          <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M2 2L8 5L2 8" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round"/>
+          </marker>
+          <marker id="arr1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M2 2L8 5L2 8" fill="none" stroke="#B8860B" stroke-width="1.5" stroke-linecap="round"/>
+          </marker>
+        </defs>
+
+        <!-- Будівля — периметральний блок (квадрат) -->
+        <rect x="170" y="40" width="240" height="240" fill="#C0DD97" stroke="#639922" stroke-width="1.5"/>
+        <!-- Inner courtyard -->
+        <rect x="210" y="80" width="160" height="160" fill="#EAF3DE" stroke="#97C459" stroke-width="1" stroke-dasharray="4,2"/>
+
+        <!-- Courtyard label -->
+        <text x="290" y="165" font-size="11" fill="#3B6D11" font-weight="600" text-anchor="middle">Двір</text>
+
+        <!-- 3 ядра -->
+        <!-- Основне ядро 1 -->
+        <rect x="170" y="40" width="25" height="25" fill="#2C2A26" stroke="#444441" stroke-width="1"/>
+        <text x="182.5" y="35" font-size="8" fill="#2C2A26" text-anchor="middle" font-weight="600">ядро 1</text>
+        <!-- Основне ядро 2 -->
+        <rect x="385" y="255" width="25" height="25" fill="#2C2A26" stroke="#444441" stroke-width="1"/>
+        <text x="397.5" y="288" font-size="8" fill="#2C2A26" text-anchor="middle" font-weight="600">ядро 2</text>
+        <!-- Сервісне ядро -->
+        <rect x="170" y="255" width="25" height="25" fill="#444441" stroke="#666" stroke-width="1"/>
+        <text x="182.5" y="288" font-size="8" fill="#444441" text-anchor="middle" font-weight="600">сервісне</text>
+
+        <!-- Main entrance -->
+        <polygon points="420,160 440,148 440,172" fill="#378ADD" stroke="#185FA5" stroke-width="1"/>
+        <text x="446" y="157" font-size="9" fill="#185FA5" font-weight="600">Гол. вхід</text>
+
+        <!-- Secondary entrance -->
+        <polygon points="160,160 140,148 140,172" fill="#9FE1CB" stroke="#1D9E75" stroke-width="1"/>
+        <text x="135" y="157" font-size="9" fill="#1D9E75" font-weight="600" text-anchor="end">Вхід</text>
+
+        <!-- Wing depth annotation -->
+        <line x1="410" y1="160" x2="370" y2="160" stroke="#B8860B" stroke-width="1.2" marker-start="url(#arr1)" marker-end="url(#arr1)"/>
+        <rect x="368" y="152" width="44" height="16" rx="2" fill="#FAEEDA"/>
+        <text x="390" y="163.5" font-size="9.5" fill="#633806" text-anchor="middle" font-weight="600">16–18 м</text>
+
+        <!-- Top wing depth annotation -->
+        <line x1="290" y1="40" x2="290" y2="80" stroke="#B8860B" stroke-width="1.2" marker-start="url(#arr1)" marker-end="url(#arr1)"/>
+        <rect x="268" y="52" width="44" height="16" rx="2" fill="#FAEEDA"/>
+        <text x="290" y="63.5" font-size="9.5" fill="#633806" text-anchor="middle" font-weight="600">16–18 м</text>
+
+        <!-- Legend -->
+        <rect x="430" y="220" width="140" height="70" rx="4" fill="white" stroke="#E0E0D8" stroke-width="0.5" opacity=".95"/>
+        <text x="440" y="234" font-size="8" fill="#6B7280" font-weight="700">ЛЕГЕНДА</text>
+        <rect x="440" y="240" width="10" height="10" fill="#C0DD97" stroke="#639922" stroke-width=".5"/>
+        <text x="455" y="249" font-size="8" fill="#2C2A26">Маса будівлі</text>
+        <rect x="440" y="255" width="10" height="10" fill="#EAF3DE" stroke="#97C459" stroke-width=".5" stroke-dasharray="2,1"/>
+        <text x="455" y="264" font-size="8" fill="#2C2A26">Внутрішній двір</text>
+        <rect x="440" y="270" width="10" height="10" fill="#2C2A26"/>
+        <text x="455" y="279" font-size="8" fill="#2C2A26">Ядра (3 шт.)</text>
+      </svg>
     </div>
-    <div class="param-grid">
-      <div class="param-row"><div class="k">Тип морфології</div><div class="v">Периметральний блок (колодець) — 4 крила замикають внутрішній двір з усіх сторін</div></div>
-      <div class="param-row"><div class="k">Глибина крила</div><div class="v"><strong>15–18 м</strong> від зовнішнього фасаду до межі двору — забезпечує 100% денне освітлення всіх робочих місць (норма BREEAM: ≤8 м від вікна)</div></div>
-      <div class="param-row"><div class="k">Розташування ядер</div><div class="v"><strong>2 ядра — діагональне розташування</strong> у NW та SE кутах будівлі. Кожне ядро: 2 сходові клітини + 3–4 ліфти + МЗК + санвузли + технічні шахти. Розмір ядра: 14×14 м. ⚠️ Третє допоміжне ядро (сервісні ліфти) рекомендується розмістити у SW куті для logistики</div></div>
-      <div class="param-row"><div class="k">Площа забудови</div><div class="v"><strong>~5 000 м²</strong> (коефіцієнт забудови ~49–50% від 1,0134 га — в межах норми ≤60%)</div></div>
-      <div class="param-row"><div class="k">Внутрішній двір</div><div class="v"><strong>~2 500–3 000 м²</strong>. Відкритий до неба, доступний публічно з рівня 1-го поверху через наскрізний прохід з вул. Межигірська → двір → вул. Костянтинівська. <strong>Атріум до 2-го поверху</strong> (скляне накриття над частиною двору ~800–1 200 м²) — фаза 1. Решта двору — відкрита тераса</div></div>
-      <div class="param-row"><div class="k">Поверховість</div><div class="v"><strong>7 надземних поверхів + 2 підземних рівні</strong> (P-1 та P-2). Висота будівлі: ~27 м (≤27,0 м — містобудівне обмеження для Подолу)</div></div>
-      <div class="param-row"><div class="k">Висота поверхів</div><div class="v">1-й поверх (лобі): <strong>5,0 м</strong> у чистоті. Атріум: <strong>2 поверхи = 9,0–10,0 м</strong>. Типовий поверх 2–7: <strong>2,85–3,0 м</strong> у чистоті (3,70 м поверх-поверх). Технічний поверх: 2,8 м</div></div>
-      <div class="param-row"><div class="k">Покрівля</div><div class="v">50% — ресторан + тераси (відкриті та накриті). 30% — інженерні системи (VRF, DOAS, сонячні панелі). 20% — зелена покрівля (extensive green roof для BREEAM)</div></div>
-      <div class="param-row"><div class="k">Ландшафт</div><div class="v">Зелений буфер по периметру ділянки 5 м: кущі + дерева відповідно до ДБН. Велодоріжка уздовж фасаду вул. Межигірська. Публічна площа перед головним входом ~300–400 м²</div></div>
-    </div>
+
+    <table class="ptable">
+      <tr><td class="pk">Тип</td><td class="pv"><strong>Периметральний блок («Колодець»)</strong> — 4 крила навколо внутрішнього двору.</td></tr>
+      <tr><td class="pk">Глибина крила</td><td class="pv"><strong>15–18 м</strong> від зовнішнього фасаду до межі двору. 100% денне освітлення всіх робочих місць</td></tr>
+      <tr><td class="pk">Ядра будівлі</td><td class="pv"><strong>3 ядра:</strong> 2 основні (сходи ×2 + ліфти ×3–4 + МЗК + санвузли, 14×14 м кожне) та 1 сервісне (вантажний ліфт 2 000 кг + постачання ресторану покрівлі)</td></tr>
+      <tr><td class="pk">Площа забудови</td><td class="pv"><strong>~5 000 м²</strong> — коефіцієнт забудови ~49% (норма ≤60%)</td></tr>
+      <tr><td class="pk">Внутрішній двір</td><td class="pv"><strong>~2 500–3 000 м².</strong> Публічний, наскрізний прохід вул. Межигірська → двір → вул. Костянтинівська. <strong>Атріум фаза 1:</strong> скляне накриття ~800–1 200 м² над частиною двору (до 2-го поверху = 9–10 м висота)</td></tr>
+      <tr><td class="pk">Поверховість</td><td class="pv"><strong>7 надземних + 2 підземних рівні</strong> (P-1, P-2). Висота будівлі ≤27,0 м (містобудівне обмеження Подолу)</td></tr>
+      <tr><td class="pk">Висоти поверхів</td><td class="pv">1-й пов. (лобі): <strong>5,0 м</strong> у чистоті. Атріум: <strong>9–10 м</strong> (2 поверхи). Типовий 2–7: <strong>2,85–3,0 м</strong> у чистоті (3,70 м поверх–поверх). Підземні: 3,0 м</td></tr>
+      <tr><td class="pk">Покрівля</td><td class="pv"><strong>50%</strong> — ресторан + відкриті/накриті тераси. <strong>30%</strong> — інженерія (VRF, DOAS, сонячні панелі, газова кришна котельня). <strong>20%</strong> — extensive green roof (BREEAM)</td></tr>
+      <tr><td class="pk">Ландшафт</td><td class="pv">Зелений буфер 5 м по периметру ділянки. Велодоріжка вздовж вул. Межигірська. Публічна площа перед входом ~300–400 м²</td></tr>
+    </table>
+
     <div class="alert alert-add" style="margin-top:.6rem">
       <strong>Конструктивна сітка колон:</strong> <strong>8,1×8,1 м</strong> або <strong>7,5×9,0 м</strong> (кратно 1,5 м). Це ключова вимога для гнучкості планування офісів та відповідності BREEAM. Прорахувати обидва варіанти.
     </div>
@@ -320,11 +428,10 @@ body::before {
 
 <!-- SECTION 2: ПІДЗЕМНІ РІВНІ -->
 <div class="section">
-  <div class="section-head" onclick="toggle(this)">
+  <div class="section-head" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
     <div class="section-num">02</div>
     <div class="section-title">Підземні рівні P-1 та P-2</div>
-    <span class="section-tag tag-req">Обов'язково</span>
-    <span style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
+    <span aria-hidden="true" style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
   </div>
   <div class="section-body open">
     <table class="floor-table">
@@ -353,11 +460,10 @@ body::before {
 
 <!-- SECTION 3: ПОВЕРХОВИЙ РОЗПОДІЛ -->
 <div class="section">
-  <div class="section-head" onclick="toggle(this)">
+  <div class="section-head" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
     <div class="section-num">03</div>
     <div class="section-title">Поверховий розподіл функцій</div>
-    <span class="section-tag tag-req">Обов'язково</span>
-    <span style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
+    <span aria-hidden="true" style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
   </div>
   <div class="section-body open">
     <table class="floor-table">
@@ -421,19 +527,18 @@ body::before {
 
 <!-- SECTION 4: ПРОГРАМА 1-го ПОВЕРХУ -->
 <div class="section">
-  <div class="section-head" onclick="toggle(this)">
+  <div class="section-head" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
     <div class="section-num">04</div>
     <div class="section-title">Програма активного 1-го поверху (партер)</div>
-    <span class="section-tag tag-req">Обов'язково</span>
-    <span style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
+    <span aria-hidden="true" style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
   </div>
   <div class="section-body open">
     <div class="alert alert-note" style="margin-bottom:.6rem">
       Весь перший поверх має функціонувати як <strong>«міська вітальня»</strong>. Внутрішній двір відкритий для публіки — наскрізний прохід вул. Межигірська → двір → вул. Костянтинівська. Фасад: 70%+ скління на рівні 1-го поверху. Висота приміщень: 5,0 м (подвійний об'єм лобі та атріум).
     </div>
     <div class="func-list">
-      <div class="func-item" style="background:#EAF3DE">
-        <div class="func-pct" style="color:#27500A">8–10%</div>
+      <div class="func-item" style="background:#EAF3DE !important; border-color:rgba(99,153,34,0.2)">
+        <div class="func-pct" style="color:#27500A !important">8–10%</div>
         <div><div class="func-name">Лобі / рецепція / консьєрж</div><div class="func-note">Висота 5 м, вхід з вул. Межигірська. Ресепшн + зона очікування + арт-інсталяція. Окремий вхід у коворкінг. Обов'язково: турнікети + СКУД</div></div>
         <div class="func-m2">~320–400 м²</div>
       </div>
@@ -442,23 +547,23 @@ body::before {
         <div><div class="func-name">Ритейл / сервіси</div><div class="func-note">Модуль 5–8 м фасаду. Нова пошта (40–60 м²), банк/банкомат (80–120 м²), хімчистка (30–50 м²), мікромаркет 24/7 (60–100 м²), аптека/wellness-шоп (40–80 м²)</div></div>
         <div class="func-m2">~400–480 м²</div>
       </div>
-      <div class="func-item" style="background:#FAEEDA">
-        <div class="func-pct" style="color:#633806">5–7%</div>
+      <div class="func-item" style="background:#FEF9F0 !important; border-color:rgba(180,120,30,0.15)">
+        <div class="func-pct" style="color:#7A4A10 !important">5–7%</div>
         <div><div class="func-name">Кафе / спеціалізована кав'ярня</div><div class="func-note">Grab-and-go + посадка. Вихід на вулицю та у двір. Літня тераса. Доступно до 22:00</div></div>
         <div class="func-m2">~200–280 м²</div>
       </div>
-      <div class="func-item" style="background:#FAEEDA">
-        <div class="func-pct" style="color:#633806">5–8%</div>
+      <div class="func-item" style="background:#FEF9F0 !important; border-color:rgba(180,120,30,0.15)">
+        <div class="func-pct" style="color:#7A4A10 !important">5–8%</div>
         <div><div class="func-name">Бар-лаунж</div><div class="func-note">Вечірній формат. Виходи на двір (літній сезон). Трансформується для подій. М'які зони + барна стійка</div></div>
         <div class="func-m2">~200–320 м²</div>
       </div>
-      <div class="func-item" style="background:#FAEEDA">
-        <div class="func-pct" style="color:#633806">10–12%</div>
+      <div class="func-item" style="background:#FEF9F0 !important; border-color:rgba(180,120,30,0.15)">
+        <div class="func-pct" style="color:#7A4A10 !important">10–12%</div>
         <div><div class="func-name">Фудкорт / їдальня</div><div class="func-note">150–200 посадок. Норма 1,5–2,0 м²/місце. Денний формат (8:00–20:00). Кілька стрітфуд-концептів. Окрема кухонна зона ~80–120 м²</div></div>
         <div class="func-m2">~400–480 м²</div>
       </div>
-      <div class="func-item" style="background:#E6F1FB">
-        <div class="func-pct" style="color:#0C447C">8–10%</div>
+      <div class="func-item" style="background:#EFF5FE !important; border-color:rgba(56,120,220,0.15)">
+        <div class="func-pct" style="color:#1D4ED8 !important">8–10%</div>
         <div><div class="func-name">Івент / ком'юніті простір</div><div class="func-note">Трансформований простір: виставки, маркети, лекції, концерти. Рухомі перегородки. Прямий доступ з двору. Оренда погодинно/поденно</div></div>
         <div class="func-m2">~320–400 м²</div>
       </div>
@@ -481,11 +586,10 @@ body::before {
 
 <!-- SECTION 5: AMENITY + FLEX -->
 <div class="section">
-  <div class="section-head" onclick="toggle(this)">
+  <div class="section-head" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
     <div class="section-num">05</div>
     <div class="section-title">Amenity Spaces + Flex/Coworking (12–18% GLA)</div>
-    <span class="section-tag tag-rec">Рекомендовано</span>
-    <span style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
+    <span aria-hidden="true" style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
   </div>
   <div class="section-body">
     <div class="two-col">
@@ -501,12 +605,12 @@ body::before {
       <div>
         <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--color-text-secondary);margin-bottom:.45rem">Amenity Spaces — 12–15% GLA</div>
         <div class="func-list">
-          <div class="func-item" style="background:#EAF3DE"><div class="func-pct" style="color:#27500A">2%</div><div><div class="func-name">Фітнес-центр + SPA</div><div class="func-note">400–500 м². Кардіо, ваги, йога, душові. 6 пов.</div></div></div>
-          <div class="func-item" style="background:#EAF3DE"><div class="func-pct" style="color:#27500A">1%</div><div><div class="func-name">Wellness / Biohacking</div><div class="func-note">Кімнати медитації, sensory deprivation, криокамера, IV-терапія</div></div></div>
-          <div class="func-item" style="background:#EAF3DE"><div class="func-pct" style="color:#27500A">1%</div><div><div class="func-name">Maker Space / Лабораторія</div><div class="func-note">3D принтери, CNC, студія звукозапису, відеостудія. 5 пов.</div></div></div>
-          <div class="func-item" style="background:#EAF3DE"><div class="func-pct" style="color:#27500A">3–4%</div><div><div class="func-name">F&B верхній рівень</div><div class="func-note">Ресторан на покрівлі + тераси (7 пов. + дах)</div></div></div>
-          <div class="func-item" style="background:#EAF3DE"><div class="func-pct" style="color:#27500A">3–4%</div><div><div class="func-name">Конференц / Івент</div><div class="func-note">4 зали: мала 20 ос., середня 60 ос., велика 150 ос., мультифункц. хол 300 ос. (3 пов.)</div></div></div>
-          <div class="func-item" style="background:#EAF3DE"><div class="func-pct" style="color:#27500A">1%</div><div><div class="func-name">Дахова тераса</div><div class="func-note">Відкрита зона відпочинку, Wi-Fi, зелень. 50% покрівлі</div></div></div>
+          <div class="func-item" style="background:#EAF3DE !important; border-color:rgba(99,153,34,0.2)"><div class="func-pct" style="color:#27500A !important">2%</div><div><div class="func-name">Фітнес-центр + SPA</div><div class="func-note">400–500 м². Кардіо, ваги, йога, душові. 6 пов.</div></div></div>
+          <div class="func-item" style="background:#EAF3DE !important; border-color:rgba(99,153,34,0.2)"><div class="func-pct" style="color:#27500A !important">1%</div><div><div class="func-name">Wellness / Biohacking</div><div class="func-note">Кімнати медитації, sensory deprivation, криокамера, IV-терапія</div></div></div>
+          <div class="func-item" style="background:#EAF3DE !important; border-color:rgba(99,153,34,0.2)"><div class="func-pct" style="color:#27500A !important">1%</div><div><div class="func-name">Maker Space / Лабораторія</div><div class="func-note">3D принтери, CNC, студія звукозапису, відеостудія. 5 пов.</div></div></div>
+          <div class="func-item" style="background:#EAF3DE !important; border-color:rgba(99,153,34,0.2)"><div class="func-pct" style="color:#27500A !important">3–4%</div><div><div class="func-name">F&B верхній рівень</div><div class="func-note">Ресторан на покрівлі + тераси (7 пов. + дах)</div></div></div>
+          <div class="func-item" style="background:#EAF3DE !important; border-color:rgba(99,153,34,0.2)"><div class="func-pct" style="color:#27500A !important">3–4%</div><div><div class="func-name">Конференц / Івент</div><div class="func-note">4 зали: мала 20 ос., середня 60 ос., велика 150 ос., мультифункц. хол 300 ос. (3 пов.)</div></div></div>
+          <div class="func-item" style="background:#EAF3DE !important; border-color:rgba(99,153,34,0.2)"><div class="func-pct" style="color:#27500A !important">1%</div><div><div class="func-name">Дахова тераса</div><div class="func-note">Відкрита зона відпочинку, Wi-Fi, зелень. 50% покрівлі</div></div></div>
         </div>
       </div>
     </div>
@@ -515,11 +619,10 @@ body::before {
 
 <!-- SECTION 6: ТЕХНОЛОГІЇ ТА ІНЖЕНЕРІЯ -->
 <div class="section">
-  <div class="section-head" onclick="toggle(this)">
+  <div class="section-head" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
     <div class="section-num">06</div>
     <div class="section-title">Інженерні системи та технологічна платформа</div>
-    <span class="section-tag tag-cert">BREEAM / WELL</span>
-    <span style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
+    <span aria-hidden="true" style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
   </div>
   <div class="section-body">
     <div class="param-grid">
@@ -534,15 +637,15 @@ body::before {
       <div class="param-row"><div class="k">Starlink / Інтернет</div><div class="v">Мінімум 2 провайдери оптоволокно + Starlink Enterprise як резерв. Корпоративна Wi-Fi 6E мережа на всіх поверхах</div></div>
       <div class="param-row"><div class="k">EV-зарядки</div><div class="v">100% місць P-1 — кабельна підготовка. 20–30 активних зарядок AC 22 кВт + 4–6 DC fast charger 50–150 кВт. Управління через BMS</div></div>
   </div>
+  </div>
 </div>
 
 <!-- SECTION 7: СЕРТИФІКАЦІЯ -->
 <div class="section">
-  <div class="section-head" onclick="toggle(this)">
+  <div class="section-head" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
     <div class="section-num">07</div>
     <div class="section-title">Стандарти сертифікації та проєктування</div>
-    <span class="section-tag tag-cert">Цілі</span>
-    <span style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
+    <span aria-hidden="true" style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
   </div>
   <div class="section-body">
     <div class="two-col">
@@ -572,11 +675,10 @@ body::before {
 
 <!-- SECTION 8: ЗАВДАННЯ АРХІТЕКТОРУ -->
 <div class="section">
-  <div class="section-head" onclick="toggle(this)">
+  <div class="section-head" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
     <div class="section-num">08</div>
     <div class="section-title">Завдання архітектору — склад матеріалів</div>
-    <span class="section-tag tag-new">Нова секція</span>
-    <span style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
+    <span aria-hidden="true" style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
   </div>
   <div class="section-body">
     <div class="param-grid">
@@ -593,17 +695,72 @@ body::before {
 </div>
 
 <script>
-function toggle(el){
-  const body=el.nextElementSibling;
-  const arr=el.querySelector('span:last-child');
-  const isOpen=body.classList.contains('open');
-  body.classList.toggle('open',!isOpen);
-  if(arr)arr.textContent=isOpen?'▼':'▲';
+function toggle(el) {
+  const body = el.nextElementSibling;
+  const arr  = el.querySelector('[aria-hidden]');
+  const isOpen = body.classList.contains('open');
+
+  if (isOpen) {
+    // collapse: lock overflow+height, then animate to 0
+    body.style.overflow = 'hidden';
+    body.style.height   = body.scrollHeight + 'px';
+    body.style.opacity  = '0';
+    requestAnimationFrame(() => {
+      body.style.height  = '0';
+      body.style.padding = '0 1.2rem';
+    });
+    const collapseHandler = e => {
+      if (e.propertyName !== 'height') return;
+      body.classList.remove('open');
+      body.style.cssText = '';
+      body.removeEventListener('transitionend', collapseHandler);
+    };
+    body.addEventListener('transitionend', collapseHandler);
+  } else {
+    // expand: measure height, animate from 0
+    body.classList.add('open');
+    body.style.overflow = 'hidden';
+    const h = body.scrollHeight;
+    body.style.height  = '0';
+    body.style.padding = '0 1.2rem';
+    body.style.opacity = '0';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      body.style.height  = h + 'px';
+      body.style.padding = '1.1rem 1.2rem';
+      body.style.opacity = '1';
+    }));
+    const expandHandler = e => {
+      if (e.propertyName !== 'height') return;
+      // animation done — release overflow so nothing clips
+      body.style.height   = 'auto';
+      body.style.overflow = '';
+      body.removeEventListener('transitionend', expandHandler);
+    };
+    body.addEventListener('transitionend', expandHandler);
+  }
+
+  el.setAttribute('aria-expanded', String(!isOpen));
+  if (arr) arr.textContent = isOpen ? '▼' : '▲';
 }
-// Open all on load
-document.querySelectorAll('.section-body').forEach(b=>{
-  if(!b.classList.contains('open')) b.classList.add('open');
-  const arr=b.previousElementSibling?.querySelector('span:last-child');
-  if(arr)arr.textContent='▲';
+
+document.addEventListener('keydown', e => {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('section-head')) {
+    e.preventDefault();
+    toggle(e.target);
+  }
+});
+
+// Open all on load without animation — no overflow clipping
+document.querySelectorAll('.section-body').forEach(b => {
+  b.classList.add('open');
+  b.style.height = b.style.padding = b.style.opacity = b.style.overflow = '';
+  const head = b.previousElementSibling;
+  if (head) {
+    head.setAttribute('aria-expanded', 'true');
+    const arr = head.querySelector('[aria-hidden]');
+    if (arr) arr.textContent = '▲';
+  }
 });
 </script>
+</body>
+</html>

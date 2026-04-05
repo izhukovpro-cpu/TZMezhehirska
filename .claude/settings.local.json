@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 \"C:/Users/gykov/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"architecture technical specification document dark glassmorphism professional\" --design-system -p \"TZ Mezhehirska\")",
+      "Bash(python \"C:/Users/gykov/.claude/skills/ui-ux-pro-max/scripts/search.py\" \"architecture technical specification document dark glassmorphism professional\" --design-system -p \"TZ Mezhehirska\")",
+      "Bash(dir \"C:\\\\Users\\\\gykov\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\")"
+    ]
+  }
+}
