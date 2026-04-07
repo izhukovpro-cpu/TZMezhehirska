@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="uk">
 <head>
   <meta charset="utf-8">
@@ -312,10 +312,30 @@ body {
 
 @media(max-width:768px){
   body { font-size:15px; }
-  .doc { margin:0; border-radius:0; border:none; }
+  .doc { margin: 1rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.2); padding: 1.5rem 1.2rem; }
   .two-col{grid-template-columns:1fr}
-  .summary-bar{grid-template-columns:repeat(3,1fr)}
-  .param-grid{grid-template-columns:130px 1fr}
+  .summary-bar{grid-template-columns:repeat(2,1fr)}
+  .param-grid{grid-template-columns:120px 1fr}
+  .doc-title { font-size: 2rem; }
+}
+
+@media(max-width:480px){
+  .summary-bar{grid-template-columns:1fr}
+  .param-grid{display: flex; flex-direction: column;}
+  .param-row .k { border-bottom: none; padding-bottom: 0.2rem; border-top: 1px solid var(--color-border-tertiary); margin-top: 0.8rem; }
+  .param-row:first-child .k { border-top: none; margin-top: 0; }
+  .param-row .v { padding-top: 0; padding-bottom: 0.5rem; border-bottom: none; }
+  .ptable .pk { width:100px; }
+  .func-item { flex-wrap: wrap; }
+  .func-m2 { width: 100%; text-align: left; margin-top: 0.2rem; }
+  .floor-table, .floor-table tbody, .floor-table tr, .floor-table td { display: block; white-space: normal; }
+  .floor-table th { display: none; }
+  .floor-table tr { margin-bottom: 1rem; border: 1px solid rgba(0,0,0,0.08); border-radius: 8px; overflow: hidden; }
+  .floor-table tr:first-child { display: none; }
+  .floor-table tr:nth-child(even) td { background: transparent; }
+  .floor-table td { border-bottom: 1px solid rgba(0,0,0,0.05); padding: 0.6rem 0.8rem; }
+  .floor-table td:last-child { border-bottom: none; }
+  .floor-table td:first-child { background: #F7F8F5; }
 }
 </style>
 
@@ -802,6 +822,26 @@ document.querySelectorAll('.section-body').forEach(b => {
   background: #2A5E0A;
   color: #fff;
   box-shadow: 0 4px 12px rgba(42,94,10,0.3);
+}
+
+@media(max-width: 640px) {
+  .page-switcher {
+    width: 92%;
+    max-width: 400px;
+    bottom: 1rem;
+    padding: 4px;
+    gap: 4px;
+  }
+  .page-btn {
+    padding: 8px 6px;
+    font-size: 13px;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
 }
 </style>
 <div class="page-switcher" id="pageSwitcher">
