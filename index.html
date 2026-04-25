@@ -263,11 +263,15 @@ body {
   background: #F4F6F0;
   border: 1px solid rgba(0,0,0,0.08);
   border-radius:12px;
-  padding:14px 12px;
+  padding:14px 6px;
   text-align:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
 }
-.sb-val { font-family:'Cormorant',serif; font-size:1.6rem; font-weight:700; color:#1C1B19; }
-.sb-lbl { font-size:.85rem; color:var(--color-text-secondary); text-transform:uppercase; letter-spacing:.05em; margin-top:5px; font-weight:600; }
+.sb-val { font-size:1.6rem; font-weight:700; color:#1C1B19; white-space:nowrap; }
+.sb-lbl { font-size:.75rem; color:var(--color-text-secondary); text-transform:uppercase; letter-spacing:.05em; margin-top:5px; font-weight:600; white-space:nowrap; }
 
 /* ── ENTRANCE ANIMATIONS ── */
 @keyframes docEnter {
@@ -348,7 +352,7 @@ body {
     <span><strong>Адреса:</strong> м. Київ, вул. Межигірська</span>
     <span><strong>Кадастр:</strong> 8000000000:85:288:0001</span>
     <span><strong>Площа ділянки:</strong> 1,0134 га</span>
-    <span><strong>Клас:</strong> B+</span>
+    <span><strong>Клас:</strong> B</span>
     <span><strong>Стадія:</strong> Концептуальна аксонометрія</span>
     <span><strong>Версія:</strong> 1.0 / 2025</span>
   </div>
@@ -356,10 +360,10 @@ body {
 
 <!-- KPI SUMMARY -->
 <div class="summary-bar">
-  <div class="sb-item"><div class="sb-val">4 840 м²</div><div class="sb-lbl">Площа забудови</div></div>
-  <div class="sb-item"><div class="sb-val">~28 154 м²</div><div class="sb-lbl">GLA (ціль)</div></div>
+  <div class="sb-item"><div class="sb-val">~4 760 м²</div><div class="sb-lbl">GBA поверху</div></div>
+  <div class="sb-item"><div class="sb-val">~26 656 м²</div><div class="sb-lbl">GLA (ціль)</div></div>
   <div class="sb-item"><div class="sb-val">7 + P-1</div><div class="sb-lbl">Поверховість</div></div>
-  <div class="sb-item"><div class="sb-val">83%</div><div class="sb-lbl">Ефективність</div></div>
+  <div class="sb-item"><div class="sb-val">80%</div><div class="sb-lbl">Ефективність</div></div>
   <div class="sb-item"><div class="sb-val">~200</div><div class="sb-lbl">Паркомісць</div></div>
   <div class="sb-item"><div class="sb-val">LEED Gold</div><div class="sb-lbl">Сертифікація</div></div>
 </div>
@@ -374,85 +378,62 @@ body {
   <div class="section-body open">
 
     <div class="alert alert-note" style="margin-bottom:.8rem">
-      «H-подібна форма будівлі формує два відкритих двори по боках від центральної перемички. Перший поверх повністю відданий конференц і івент-центру — функція, якої критично бракує на Подолі. Сьомий поверх — апарт-готель для учасників заходів. Між ними: фітнес і коворкінг (2–3 пов.) та офісні поверхи під орендарів (4–6 пов.). Два відкриті двори розширюють конференц-простір назовні у теплу пору року.»
+      «H-подібна форма будівлі формує два відкритих двори по боках від центральної перемички. Корпус A — конференц-крило (1-й пов.) та коворкінг (2-й пов.) та офіси (3–7 пов.). Корпус B — сервісний партер (1-й пов.), фітнес та wellness (2-й пов.), апарт-готель (ліва ½, 2–7 пов.) та офіси (права ½, 3–7 пов.). Перемичка — центральне лобі та вертикальні комунікації.»
     </div>
 
     <div class="plan-wrap" style="background:transparent; border:none; display:flex; justify-content:center;">
       <svg viewBox="-15 -10 130 95" width="100%" style="max-width:500px; display:block">
         <!-- H-будівля -->
-        <rect x="0" y="0"  width="80" height="25"  fill="#C0DD97" stroke="#639922" stroke-width="1.5"/>
-        <rect x="0" y="60" width="80" height="25"  fill="#C0DD97" stroke="#639922" stroke-width="1.5"/>
-        <rect x="28" y="25" width="24" height="35" fill="#A8CB80" stroke="#639922" stroke-width="1.5"/>
-
+        <rect x="0" y="0"  width="80" height="24"  fill="#C0DD97" stroke="#639922" stroke-width="1.5"/>
+        <rect x="0" y="59" width="80" height="24"  fill="#C0DD97" stroke="#639922" stroke-width="1.5"/>
+        <rect x="28" y="24" width="24" height="35" fill="#A8CB80" stroke="#639922" stroke-width="1.5"/>
+        
         <!-- Двори -->
         <text x="14" y="45" font-size="5" fill="#3B6D11" font-weight="600" text-anchor="middle">Двір 1</text>
         <text x="66" y="45" font-size="5" fill="#3B6D11" font-weight="600" text-anchor="middle">Двір 2</text>
+        <text x="40" y="-3" font-size="3" fill="#3B6D11" text-anchor="middle">Корпус B — Сервіси / Фітнес / Апарт / Офіси</text>
+        <text x="40" y="87" font-size="3" fill="#3B6D11" text-anchor="middle">Корпус A — Конференц / Коворкінг / Офіси</text>
 
         
 
                 <!-- Гол. вхід -->
         <polygon points="85,42.5 90,39.5 90,45.5" fill="#378ADD" stroke="#185FA5" stroke-width="0.5"/>
         <text x="93" y="43" font-size="3" fill="#185FA5" font-weight="700">Гол. вхід</text>
-        <text x="93" y="47" font-size="2.5" fill="#185FA5">(через двір)</text>
+        <text x="93" y="47" font-size="2.5" fill="#185FA5">(вул. Межигірська)</text>
 
-        <!-- Вхід конф. -->
+        <!-- Вхід Корпус А -->
         <polygon points="85,75 90,72 90,78" fill="#9FE1CB" stroke="#1D9E75" stroke-width="0.5"/>
-        <text x="93" y="76.5" font-size="3" fill="#1D9E75" font-weight="700">Вхід конф.</text>
-
-        
+        <text x="93" y="76.5" font-size="3" fill="#1D9E75" font-weight="700">Вхід Корпус А</text>
       </svg>
     </div>
 
     <table class="ptable">
       <tr><td class="pk">Тип морфології</td><td class="pv"><strong>H-подібна будівля</strong> — два паралельних прямокутних корпуси (A та B), з'єднані центральною перемичкою</td></tr>
-      <tr><td class="pk">Геометрія</td><td class="pv">Корпуси 80×25 м (кожний) + перемичка 24×35 м</td></tr>
-      <tr><td class="pk">Глибина крила</td><td class="pv"><strong>24 м</strong> (перемичка) / <strong>25 м</strong> (корпуси A і B)</td></tr>
+      <tr><td class="pk">Геометрія</td><td class="pv">Корпуси 24×80 м + перемичка 24×35 м</td></tr>
+      <tr><td class="pk">Глибина крила</td><td class="pv"><strong>24 м</strong> (обидва корпуси та перемичка)</td></tr>
       <tr><td class="pk">Крок колон</td><td class="pv"><strong>8,0 м</strong></td></tr>
-      <tr><td class="pk">Площа забудови</td><td class="pv"><strong>4 840 м²</strong></td></tr>
+      <tr><td class="pk">Площа забудови</td><td class="pv"><strong>~4 760 м²</strong></td></tr>
       <tr><td class="pk">Кoeф. забудови</td><td class="pv"><strong>~48%</strong> (норма ≤60%) ✓</td></tr>
+
       <tr><td class="pk">Два відкр. двори</td><td class="pv">Зліва і справа від перемички, кожен <strong>~980 м²</strong>, доступні публічно, розширюють конференц-простір назовні</td></tr>
       
       <tr><td class="pk">Поверховість</td><td class="pv"><strong>7 надземних + P-1 підземний</strong></td></tr>
       <tr><td class="pk">Висота 1-го пов.</td><td class="pv"><strong>4,6 м</strong> у чистоті</td></tr>
       <tr><td class="pk">Висота 2–7 пов.</td><td class="pv"><strong>3,7 м</strong> у чистоті</td></tr>
       <tr><td class="pk">Висота будівлі</td><td class="pv"><strong>26,8 м</strong> (≤27,0 м — норма Подолу)</td></tr>
-      <tr><td class="pk">Покрівля</td><td class="pv"><strong>50%</strong> зелена тераса + відкритий івент-простір. <strong>30%</strong> інженерія (VRF, DOAS, сонячні панелі ~700–900 м²). <strong>20%</strong> газова кришна котельня + технічні системи</td></tr>
+      <tr><td class="pk">Покрівля</td><td class="pv"><strong>50%</strong> зелена тераса + відкритий івент-простір. <strong>30%</strong> VRF/DOAS + сонячні панелі ~700–900 м². <strong>20%</strong> газова кришна котельня + технічні системи</td></tr>
       <tr><td class="pk">Ландшафт</td><td class="pv">Зелений буфер 5 м по периметру. Наземний технічний бокс (ГПУ+BESS) на технічній зоні ділянки</td></tr>
     </table>
 
   </div>
 </div>
 
-<!-- SECTION 2: ПІДЗЕМНІ РІВНІ -->
+
+
+<!-- SECTION 2: ПОВЕРХОВИЙ РОЗПОДІЛ -->
 <div class="section">
   <div class="section-head" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
     <div class="section-num">02</div>
-    <div class="section-title">Підземний рівень P-1</div>
-    <span aria-hidden="true" style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
-  </div>
-  <div class="section-body open">
-    <table class="floor-table">
-      <tr><th>Рівень</th><th>Функція</th><th>Площа</th><th>Примітки</th></tr>
-      <tr>
-        <td><span class="floor-badge" style="background:#2C2A26;color:#F1EFE8">P-1</span></td>
-        <td>
-          Паркінг ~200 місць (100% EV-ready, кабельна підготовка) <br> 20–30 активних EV зарядок AC 22 кВт + 4–6 DC fast charger <br> Велопарковка 50+ місць <br> 5% місць для маломобільних груп (ДБН В.2.2-40) <br> Насосна станція підвищення тиску <br> Резервуар питної води 100 м³ <br> Резервуар дощової води 50–80 м³ <br> Укриття ЦО ~800–1 000 осіб
-        </td>
-        <td>7 000 м²</td>
-        <td>—</td>
-      </tr>
-    </table>
-    <div class="alert alert-add" style="margin-top:.6rem">
-      <strong>Наземний технічний бокс (окрема споруда на ділянці):</strong><br>
-      ГПУ 800–1 200 кВА + BESS 500–800 кВт·год LFP розміщуються в окремому наземному технічному боксі на технічній зоні ділянки поза контуром основної будівлі. Підключення ГПУ до міської газової мережі. Шумоізоляція відповідно до ДБН. FR120 відсік для BESS.
-    </div>
-  </div>
-</div>
-
-<!-- SECTION 3: ПОВЕРХОВИЙ РОЗПОДІЛ -->
-<div class="section">
-  <div class="section-head" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
-    <div class="section-num">03</div>
     <div class="section-title">Поверховий розподіл функцій</div>
     <span aria-hidden="true" style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
   </div>
@@ -461,127 +442,148 @@ body {
       <tr><th>Поверх</th><th>Функція</th><th>Площа</th><th>Тип</th></tr>
       <tr>
         <td><span class="floor-badge" style="background:#2C2A26;color:#F1EFE8">P-1</span></td>
-        <td>Паркінг ~200 м/м (EV-ready) · Велопарковка 50+ · Насосна · Резервуари питної (100 м³) та дощової (50–80 м³) води · Укриття ЦО ~800–1 000 осіб</td>
+        <td>Паркінг ~200 м/м (EV-ready) · Велопарковка 50+<br>Насосна · Резервуари питної 100 м³ + дощової 50–80 м³<br>Укриття ЦО ~800–1 000 осіб</td>
         <td>7 000 м²</td>
         <td>—</td>
       </tr>
       <tr>
         <td><span class="floor-badge" style="background:#EF9F27;color:#412402">1-й</span></td>
-        <td>Конференц і івент-центр (основна функція) · Рецепція 300 м² · Кафе ~50 м² · Ресторан-бар 150–200 м² · Окремий вхід · Розширення на два двори</td>
-        <td>GBA 4 840 м² / GLA ~4 022 м²</td>
+        <td><strong>КОРПУС A — Конференц-крило (весь корпус):</strong><br>
+Зал A 588 м² (300 ос.) · Зал B 378 м² (150 ос.) · Зал C 252 м² (100 ос.)<br>
+Перег. ×3 · Фойє A+B+C = 550+ ос.<br>
+Коридор + санвузли → ~534 м²<br>
+GLA: ~1 344 м²<br>
+<strong>ПЕРЕМИЧКА — Центральне лобі (non-GLA):</strong><br>
+Входи: → офіси · → апарт-готель · → конференц<br>
+Рецепція · сходи · ліфти ×4 · вантажний ліфт<br>
+<strong>КОРПУС B — Сервісне крило (shell & core):</strong><br>
+Ресторан 300м² · Кафе 150м² · Гастромаркет 500м² · Шоуруми ×3 · Банк · НП · Хімчистка · Барбершоп<br>
+GLA: ~1 536 м²</td>
+        <td>GBA ~4 760 м² / GLA ~2 880 м²</td>
         <td>Публічний</td>
       </tr>
       <tr>
         <td><span class="floor-badge" style="background:#378ADD;color:#E6F1FB">2-й</span></td>
-        <td>Фітнес-центр 1 000 м² · Wellness/Biohacking ~400 м² · Коворкінг ~2 622 м²</td>
-        <td>GBA 4 840 м² / GLA ~4 022 м²</td>
-        <td>Amenity + Flex</td>
+        <td><strong>КОРПУС A — Коворкінг (весь корпус):</strong><br>
+Hot desks (8–10 м²/стіл) · приватні офіси 2–20 ос. · Phone booths · lounge zones. GLA: ~1 536 м²<br>
+<strong>ПЕРЕМИЧКА — Комунікації (non-GLA)</strong><br>
+<strong>КОРПУС B — Фітнес + Wellness + Апарт:</strong><br>
+Фітнес-центр ~900 м² + Wellness/Biohacking (на ~½ поверху — розміщення визначає архітектор) (кардіо, силові, йога-зала, душові, роздягальні, медитація, sensory deprivation, криокамера, IV-терапія)<br>
+Апарт-готель ліва ½ → ~768 м² GLA<br>
+GLA корп. B: ~1 536 м²</td>
+        <td>GBA ~4 760 м² / GLA ~3 072 м²</td>
+        <td>Flex + Amenity + Апарт</td>
       </tr>
       <tr>
         <td><span class="floor-badge" style="background:#639922;color:#fff">3-й</span></td>
-        <td>Коворкінг ~2 011 м² · Офіси під орендарів ~2 011 м²</td>
-        <td>GBA 4 840 м² / GLA ~4 022 м²</td>
-        <td>Flex + Оренда</td>
+        <td><strong>КОРПУС A — Офіси малі лоти 50–200 м²:</strong> GLA: ~1 536 м²<br>
+<strong>ПЕРЕМИЧКА — Комунікації (non-GLA)</strong><br>
+<strong>КОРПУС B — Апарт-готель ліва ½ + Офіси права ½:</strong><br>
+Апарт-готель ліва ½ → ~768 м² GLA<br>
+Офіси малі лоти права ½ → ~768 м² GLA<br>
+GLA корп. B: ~1 536 м²</td>
+        <td>GBA ~4 760 м² / GLA ~3 072 м²</td>
+        <td>Оренда + Апарт</td>
       </tr>
       <tr>
         <td><span class="floor-badge" style="background:#639922;color:#fff">4-й</span></td>
-        <td>Офіси під орендарів (open space + кабінетний)</td>
-        <td>GBA 4 840 м² / GLA ~4 022 м²</td>
-        <td>Оренда</td>
+        <td>Аналогічно 3-му поверху</td>
+        <td>GBA ~4 760 м² / GLA ~3 072 м²</td>
+        <td>Оренда + Апарт</td>
       </tr>
       <tr>
         <td><span class="floor-badge" style="background:#639922;color:#fff">5-й</span></td>
-        <td>Офіси під орендарів</td>
-        <td>GBA 4 840 м² / GLA ~4 022 м²</td>
-        <td>Оренда</td>
+        <td>Аналогічно 3-му поверху</td>
+        <td>GBA ~4 760 м² / GLA ~3 072 м²</td>
+        <td>Оренда + Апарт</td>
       </tr>
       <tr>
         <td><span class="floor-badge" style="background:#639922;color:#fff">6-й</span></td>
-        <td>Офіси під орендарів</td>
-        <td>GBA 4 840 м² / GLA ~4 022 м²</td>
-        <td>Оренда</td>
+        <td>Аналогічно 3-му поверху</td>
+        <td>GBA ~4 760 м² / GLA ~3 072 м²</td>
+        <td>Оренда + Апарт</td>
       </tr>
       <tr>
         <td><span class="floor-badge" style="background:#1D9E75;color:#fff">7-й</span></td>
-        <td>Апарт-готель short-stay для учасників конференцій: студії та 1-кімнатні апартаменти. Бронювання пакетом з конференц-залами</td>
-        <td>GBA 4 840 м² / GLA ~4 022 м²</td>
-        <td>Апарт</td>
+        <td>Аналогічно 3-му поверху<br>Вихід з апарт-готелю на дахову терасу</td>
+        <td>GBA ~4 760 м² / GLA ~3 072 м²</td>
+        <td>Оренда + Апарт</td>
       </tr>
       <tr>
         <td><span class="floor-badge" style="background:#2C2A26;color:#F1EFE8">Дах</span></td>
-        <td>50% зелена тераса + відкритий івент-простір · 30% інженерія (VRF, DOAS, сонячні панелі) · 20% газова кришна котельня + технічні системи</td>
-        <td>~4 840 м²</td>
+        <td>50% зелена тераса + відкритий івент-простір<br>30% VRF/DOAS + сонячні панелі ~700–900 м²<br>20% газова кришна котельня + технічні системи</td>
+        <td>~4 760 м²</td>
         <td>—</td>
       </tr>
     </table>
     <div style="margin-top:.8rem; font-size:.8rem; padding:.5rem; background:#F7F8F5; border-radius:8px;">
-      <strong>Підсумок:</strong> GBA надземна (пов. 1–7): 33 880 м² | GLA загальна (пов. 1–7): ~28 154 м² | Ефективність: 83%
+      <strong>Підсумок:</strong><br>
+      GBA надземна (пов. 1–7): 33 320 м²<br>
+      GLA загальна (80%): ~26 656 м²<br>
+      Ефективність: 80%<br>
+      Апарт-готель: корп. B ліва ½, пов. 2–7 (GBA: 5 760 м² / GLA: ~4 608 м²)<br>
+      Коворкінг: корп. A 2-й пов. ~1 536 м² GLA<br>
+      Фітнес + Wellness: корп. B 2-й пов. (~½ пов., shell & core)<br>
+      Офіси: корп. A пов. 3–7 + корп. B права ½ пов. 3–7
     </div>
     <div class="alert alert-note" style="margin-top:.5rem">
-      <strong>Примітка:</strong> На кожному поверсі 1–7: 1 душова кабіна (велосипедна інфраструктура, вимога LEED) та серверна (5 м²). 
+      <strong>Примітка:</strong> На кожному поверсі 1–7: 1 душова кабіна (велосипедна інфраструктура, вимога LEED). Перемичка на всіх поверхах — виключно вертикальні комунікації (non-GLA). Два ядра NW + SE.
     </div>
   </div>
 </div>
 
-<!-- SECTION 4: ПРОГРАМА 1-го ПОВЕРХУ -->
+<!-- SECTION 3: ПРОГРАМА 1-го ПОВЕРХУ -->
 <div class="section">
   <div class="section-head" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
-    <div class="section-num">04</div>
-    <div class="section-title">Програма 1-го поверху — Конференц і Івент-центр</div>
+    <div class="section-num">03</div>
+    <div class="section-title">Програма 1-го поверху — три функціональних крила</div>
     <span aria-hidden="true" style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
   </div>
   <div class="section-body open">
     <div class="alert alert-note" style="margin-bottom:.6rem">
-      Перший поверх повністю відданий під організацію подій і конференцій — функція, якої критично бракує на Подолі. Окремий вхід дозволяє конференц-частині працювати незалежно від офісної. Два відкритих двори розширюють простір для заходів у теплу пору року.
+      Перший поверх поділений на три незалежних блоки з окремими входами. Корпус A — конференц-крило (550+ осіб). Перемичка — центральне лобі. Корпус B — гнучкі комерційні площі (shell & core): ресторан, гастромаркет, шоуруми, щоденні сервіси. Два відкритих двори розширюють простори назовні влітку.
     </div>
     <div class="func-list">
       <div class="func-item" style="background:#EAF3DE !important; border-color:rgba(99,153,34,0.2)">
-        <div class="func-pct" style="color:#27500A !important">~85%</div>
-        <div style="flex:1"><div class="func-name">Конференц-зали + івент-простір</div><div class="func-note">Мала зала до 30 ос., Середня зала до 100 ос., Велика зала до 300 ос., Трансформований мультифункціональний хол. Мобільні перегородки. Розширення на обидва двори влітку. Окремий вхід з вулиці (незалежно від офісів)</div></div>
-        <div class="func-m2">~3 422 м²</div>
+        <div class="func-pct" style="color:#27500A !important; width:auto; padding-right:.5rem">A</div>
+        <div style="flex:1"><div class="func-name">КОРПУС A — КОНФЕРЕНЦ-КРИЛО</div><div class="func-note">
+          <strong>Зал A (588 м²):</strong> Театр 300 · банкет 180 · кабаре 140 · фуршет 400. Сцена 40–60 м² · LED-стіна · рейкова акустика · DALI. Трансформація: A1+A2 по 294 м². Вихід на двір через розсувне скління.<br>
+          <strong>Зал B (378 м²):</strong> Театр 150 · клас 80 · П-подібна 40 · банкет 100. ВКС Zoom/Teams · синхпереклад 2 кабіни. Трансформація: B1+B2 по 189 м².<br>
+          <strong>Зал C (252 м²):</strong> Театр 100 · клас 60 · П-подібна 35. Трансформація: C1+C2 по 126 м².<br>
+          <strong>A+B+C разом:</strong> 1 218 м² / 550+ осіб.<br>
+          <strong>Переговорні:</strong> П1 (42 м²), П2 (42 м²), П3 (84 м²).<br>
+          <strong>Фойє + реєстрація (300 м²):</strong> кава-брейки, нетворкінг.<br>
+          Окремий вхід з двору / вулиці.
+        </div></div>
       </div>
       <div class="func-item">
-        <div class="func-pct" style="color:#639922">~7%</div>
-        <div style="flex:1"><div class="func-name">Рецепція / лобі</div><div class="func-note">Спільна для офісної та конференц частини</div></div>
-        <div class="func-m2">~300 м²</div>
+        <div class="func-pct" style="color:#639922; width:auto; padding-right:.5rem">—</div>
+        <div style="flex:1"><div class="func-name">ПЕРЕМИЧКА — ЦЕНТРАЛЬНЕ ЛОБІ</div><div class="func-note">
+          Рецепція → офіси / апарт-готель / конференц<br>
+          Сходи ×2 · ліфти ×4 · вантажний ліфт ×1 · Зона очікування
+        </div></div>
       </div>
       <div class="func-item" style="background:#FEF9F0 !important; border-color:rgba(180,120,30,0.15)">
-        <div class="func-pct" style="color:#7A4A10 !important">~1%</div>
-        <div style="flex:1"><div class="func-name">Кафе</div><div class="func-note">Grab-and-go</div></div>
-        <div class="func-m2">~50 м²</div>
+        <div class="func-pct" style="color:#7A4A10 !important; width:auto; padding-right:.5rem">B</div>
+        <div style="flex:1"><div class="func-name">КОРПУС B — СЕРВІСНЕ КРИЛО (shell & core)</div><div class="func-note">
+          <strong>Ресторан-бар (300 м²):</strong> 80–100 посадок, вихід на двір.<br>
+          <strong>Кафе-їдальня (150 м²):</strong> 50–70 посадок, 8:00–20:00.<br>
+          <strong>Гастромаркет / food hall (500 м²):</strong> Food-концепти, фермерська продукція. Окремий вхід з вулиці. Графік 8:00–22:00.<br>
+          <strong>Шоуруми ×3 (150 м² кожний = 450 м²):</strong> Окремі входи з вулиці. Модуль фасаду 10 м.<br>
+          <strong>Малі сервіси (220 м²):</strong> Банк/банкомат 80 м² · Нова Пошта 50 м² · Хімчистка 40 м² · Барбершоп 50 м².<br>
+          <strong>Службові/технічні:</strong> 250 м².<br>
+          <em>Всі площі — shell & core: Open space до меж лота. Введення: ел., вода, каналізація, вентиляція. Fit-out виконує орендар самостійно.</em>
+        </div></div>
       </div>
-      <div class="func-item" style="background:#FEF9F0 !important; border-color:rgba(180,120,30,0.15)">
-        <div class="func-pct" style="color:#7A4A10 !important">~4%</div>
-        <div style="flex:1"><div class="func-name">Ресторан-бар</div><div class="func-note">Обслуговування учасників конференцій та орендарів</div></div>
-        <div class="func-m2">~150–200 м²</div>
-      </div>
-      <div class="func-item">
-        <div class="func-pct">~3%</div>
-        <div style="flex:1"><div class="func-name">Службові / технічні</div><div class="func-note">МЗК, охорона, ВРЩ, серверна</div></div>
-        <div class="func-m2">~250 м²</div>
-      </div>
-      <div class="func-item">
-        <div class="func-pct" style="color:#639922">~1%</div>
-        <div style="flex:1"><div class="func-name">Банк</div><div class="func-note">Відділення банку або зона самообслуговування</div></div>
-        <div class="func-m2">~50 м²</div>
-      </div>
-      <div class="func-item">
-        <div class="func-pct" style="color:#639922">~1%</div>
-        <div style="flex:1"><div class="func-name">Нова Пошта</div><div class="func-note">Поштове відділення / поштомати</div></div>
-        <div class="func-m2">~50 м²</div>
-      </div>
-</div>
-    <div style="margin-top:.8rem; font-size:.8rem; padding:.5rem; background:#F7F8F5; border-radius:8px;">
-      <strong>Разом GLA 1-го поверху:</strong> ~4 022 м²
     </div>
   </div>
 </div>
 
-<!-- SECTION 5: AMENITY + FLEX -->
+<!-- SECTION 4: AMENITY + FLEX -->
 <div class="section">
   <div class="section-head" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
-    <div class="section-num">05</div>
-    <div class="section-title">Amenity Spaces (5 блоків)</div>
+    <div class="section-num">04</div>
+    <div class="section-title">Amenity Spaces (6 блоків)</div>
     <span aria-hidden="true" style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
   </div>
   <div class="section-body open">
@@ -589,46 +591,53 @@ body {
       <div class="func-item" style="background:#EAF3DE !important; border-color:rgba(99,153,34,0.2)">
         <div class="func-pct" style="color:#27500A !important; width:auto; padding-right:.5rem">01</div>
         <div style="flex:1">
-          <div class="func-name">КОНФЕРЕНЦ-ЦЕНТР (1-й поверх) — ~3 422 м² GLA</div>
-          <div class="func-note">Зали: мала до 30 ос., середня до 100 ос., велика до 300 ос., мультифункц. хол. Мобільні перегородки. АВ-обладнання. Розширення на два двори влітку.</div>
-        </div>
-      </div>
-      <div class="func-item" style="background:#EAF3DE !important; border-color:rgba(99,153,34,0.2)">
-        <div class="func-pct" style="color:#27500A !important; width:auto; padding-right:.5rem">02</div>
-        <div style="flex:1">
-          <div class="func-name">ФІТНЕС + WELLNESS (2-й поверх, ~1 400 м²)</div>
-          <div class="func-note">Фітнес-центр: 1 000 м² (Кардіо, силові тренажери, йога-зала, душові, роздягальні).<br>Wellness / Biohacking: ~400 м² (Кімнати медитації, sensory deprivation, криокамера, IV-терапія).</div>
+          <div class="func-name">КОНФЕРЕНЦ-ЦЕНТР (Корпус A, 1-й пов.) — ~1 344 м² GLA</div>
+          <div class="func-note">Зали A+B+C (550+ ос. при об'єднанні) + переговорні ×3. Мобільні перегородки. АВ-обладнання. Розширення на два двори влітку.</div>
         </div>
       </div>
       <div class="func-item" style="background:#EFF5FE !important; border-color:rgba(56,120,220,0.15)">
-        <div class="func-pct" style="color:#1D4ED8 !important; width:auto; padding-right:.5rem">03</div>
+        <div class="func-pct" style="color:#1D4ED8 !important; width:auto; padding-right:.5rem">02</div>
         <div style="flex:1">
-          <div class="func-name">КОВОРКІНГ (2-й пов. ~2 622 м² + 3-й пов. ~2 011 м² = загалом ~4 633 м²)</div>
-          <div class="func-note">Hot desks (8–10 м²/стіл, безфіксовані місця), приватні офіси 2–20 ос. (від 1 місяця), phone booths (1 кабіна / 10 осіб відкр. простору), lounge zones (м'які меблі, стоячі столи, зарядки).</div>
+          <div class="func-name">КОВОРКІНГ (Корпус A, 2-й пов.) — ~1 536 м² GLA</div>
+          <div class="func-note">Hot desks (8–10 м²/стіл), приватні офіси 2–20 ос. (від 1 міс.), phone booths (1/10 ос.), lounge zones.</div>
+        </div>
+      </div>
+      <div class="func-item" style="background:#EAF3DE !important; border-color:rgba(99,153,34,0.2)">
+        <div class="func-pct" style="color:#27500A !important; width:auto; padding-right:.5rem">03</div>
+        <div style="flex:1">
+          <div class="func-name">ФІТНЕС + WELLNESS (Корпус B, 2-й пов., ~½ пов.)</div>
+          <div class="func-note">~900 м² — shell & core. Фітнес: кардіо, силові, йога-зала, душові, роздягальні. Wellness/Biohacking: медитація, sensory deprivation, криокамера, IV-терапія. Розміщення в межах ~½ поверху — визначає архітектор.</div>
         </div>
       </div>
       <div class="func-item" style="background:#F0F9F5 !important; border-color:rgba(29,158,117,0.2)">
         <div class="func-pct" style="color:#0F6B4C !important; width:auto; padding-right:.5rem">04</div>
         <div style="flex:1">
-          <div class="func-name">АПАРТ-ГОТЕЛЬ short-stay (7-й поверх, ~4 022 м²)</div>
-          <div class="func-note">Студії та 1-кімнатні апартаменти. Для учасників конференцій. Бронювання пакетом з конференц-залами.</div>
+          <div class="func-name">АПАРТ-ГОТЕЛЬ short-stay (Корпус B ліва ½, пов. 2–7) — ~4 608 м² GLA</div>
+          <div class="func-note">Студії та 1-кімн. апартаменти. Для учасників конференцій. Бронювання пакетом з конференц-залами. Вихід на дахову терасу з 7-го поверху.</div>
+        </div>
+      </div>
+      <div class="func-item" style="background:#FEF9F0 !important; border-color:rgba(180,120,30,0.15)">
+        <div class="func-pct" style="color:#7A4A10 !important; width:auto; padding-right:.5rem">05</div>
+        <div style="flex:1">
+          <div class="func-name">ГНУЧКІ КОМЕРЦІЙНІ ПЛОЩІ (Корпус B, 1-й пов.)</div>
+          <div class="func-note">Shell & core. Гастромаркет 500 м² · шоуруми ×3 · ресторан · сервіси. Fit-out — орендар.</div>
         </div>
       </div>
       <div class="func-item" style="background:#EAF3DE !important; border-color:rgba(99,153,34,0.2)">
-        <div class="func-pct" style="color:#27500A !important; width:auto; padding-right:.5rem">05</div>
+        <div class="func-pct" style="color:#27500A !important; width:auto; padding-right:.5rem">06</div>
         <div style="flex:1">
-          <div class="func-name">ДАХОВА ТЕРАСА (~2 420 м², 50% покрівлі)</div>
-          <div class="func-note">Зелень, відкритий івент-простір. Wi-Fi. Без стаціонарного ресторану.</div>
+          <div class="func-name">ДАХОВА ТЕРАСА (~2 380 м², 50% покрівлі)</div>
+          <div class="func-note">Зелений простір, відкриті івенти, Wi-Fi. Без стаціонарного ресторану.</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- SECTION 6: ТЕХНОЛОГІЇ ТА ІНЖЕНЕРІЯ -->
+<!-- SECTION 5: ТЕХНОЛОГІЇ ТА ІНЖЕНЕРІЯ -->
 <div class="section">
   <div class="section-head" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
-    <div class="section-num">06</div>
+    <div class="section-num">05</div>
     <div class="section-title">Інженерні системи та технологічна платформа</div>
     <span aria-hidden="true" style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
   </div>
@@ -638,23 +647,24 @@ body {
       <div class="param-row"><div class="k">BMS / AI</div><div class="v"><strong>Schneider EcoStruxure</strong> або Siemens Desigo CC. IoT-датчики occupancy (1 датчик / 20 м²). Digital twin будівлі. Мобільний додаток орендаря (бронювання кімнат, температура, освітлення)</div></div>
       <div class="param-row"><div class="k">Освітлення</div><div class="v"><strong>DALI-2</strong> з human-centric функцією. Тунабельна кольорова температура 2700–6500K. Циркадні ритми. Датчики присутності та денного світла. Ціль: ≤3 кВт·год/м²/рік</div></div>
       <div class="param-row"><div class="k">Сонячні панелі</div><div class="v">На покрівлі (~700–900 м² панелей). Потужність ~100–140 кВт. Покриває ~15–20% споживання будівлі. Monolithic bifacial panels</div></div>
-      <div class="param-row"><div class="k">BESS</div><div class="v"><strong>500–800 кВт·год LFP (lithium iron phosphate).</strong> Розміщення: окремий наземний технічний бокс поруч з ГПУ на технічній зоні ділянки. FR120 відсік. Автономія критичних систем 4–8 год.</div></div>
+      <div class="param-row"><div class="k">BESS</div><div class="v">500–800 кВт·год LFP. Наземний тех. бокс поруч з ГПУ. FR120 відсік. Автономія 4–8 год.</div></div>
       <div class="param-row"><div class="k">Вода</div><div class="v">Система збору дощової води 50–80 м³ (для поливу + туалети). Питний резервуар 100 м³ (P-1). Очисна станція. Система моніторингу споживання (лічильники на кожному поверсі)</div></div>
       <div class="param-row"><div class="k">Фасад</div><div class="v">WWR (Window-to-Wall Ratio): <strong>45–55%</strong> на N/NW, <strong>35–45%</strong> на S/SE/SW. Low-E скло U≤1,1 Вт/м²К, SHGC 0,25–0,40. <strong>Зовнішній автоматизований сонцезахист</strong> (lamellar brise-soleil) на S/SE/SW фасадах. Unitized curtain wall система</div></div>
-      <div class="param-row"><div class="k">Генератор</div><div class="v">Газопоршнева установка (ГПУ) <strong>800–1 200 кВА</strong>, 100% потужності будівлі, АВР ≤10 сек. Розміщення: окремий наземний технічний бокс на ділянці (поза контуром будівлі). Підключення до міської газової мережі. Шумоізоляція відповідно до ДБН.</div></div>
+      <div class="param-row"><div class="k">Генератор</div><div class="v">Газопоршнева установка (ГПУ) 800–1 200 кВА, 100% потужності, АВР ≤10 сек. Наземний тех. бокс на ділянці поза контуром будівлі. Підключення до міської газової мережі. Шумоізоляція ДБН.</div></div>
       <div class="param-row"><div class="k">Starlink / Інтернет</div><div class="v">Мінімум 2 провайдери оптоволокно + Starlink Enterprise як резерв. Корпоративна Wi-Fi 6E мережа на всіх поверхах</div></div>
       <div class="param-row"><div class="k">EV-зарядки</div><div class="v">100% місць P-1 — кабельна підготовка. 20–30 активних зарядок AC 22 кВт + 4–6 DC fast charger 50–150 кВт. Управління через BMS</div></div>
-      <div class="param-row"><div class="k">Покрівля</div><div class="v">50% зелена тераса для відкритих івентів (без стаціонарного ресторану). 30% інженерія: VRF/DOAS + сонячні панелі ~700–900 м². 20% газова кришна котельня + технічні системи.</div></div>
-      <div class="param-row"><div class="k">Душові</div><div class="v">На поверхах 1–7: 1 душова кабіна на поверх (велосипедна інфраструктура, вимога LEED).</div></div>
+      <div class="param-row"><div class="k">Покрівля</div><div class="v">50% зелена тераса (без ресторану). 30% VRF/DOAS + сонячні панелі ~700–900 м². 20% газова кришна котельня + технічні системи.</div></div>
+      <div class="param-row"><div class="k">Shell & core</div><div class="v">Корпус B 1-й та 2-й поверхи: навантаження ≥600 кг/м² (1-й) та ≥500 кг/м² (2-й). Висота 4,6 м (1-й) та 3,7 м (2-й). Виводи каналізації 1/50 м². Потужність ≥150 Вт/м² (1-й), ≥120 Вт/м² (2-й). Витяжна шахта для food (1-й). Fit-out — орендар.</div></div>
+      <div class="param-row"><div class="k">Душові</div><div class="v">На поверхах 1–7: 1 душова кабіна на поверх (велоінфраструктура, вимога LEED).</div></div>
       
     </div>
   </div>
 </div>
 
-<!-- SECTION 7: СЕРТИФІКАЦІЯ -->
+<!-- SECTION 6: СЕРТИФІКАЦІЯ -->
 <div class="section">
   <div class="section-head" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
-    <div class="section-num">07</div>
+    <div class="section-num">06</div>
     <div class="section-title">Стандарти сертифікації та проєктування</div>
     <span aria-hidden="true" style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
   </div>
@@ -662,7 +672,7 @@ body {
     <div class="two-col">
       <div class="cert-item" style="border-left:3px solid #2A5E0A">
         <div class="cert-name" style="color:#2A5E0A">LEED Gold</div>
-        <div class="cert-level">LEED Gold (BD+C v4.1). Ціль: 60–79 балів. Залучити LEED AP з концептуальної стадії. Ключові категорії: Energy &amp; Atmosphere (33 бали), Indoor Environmental Quality (16 балів), Water Efficiency (11 балів), Materials &amp; Resources (13 балів).</div>
+        <div class="cert-level">LEED Gold (BD+C v4.1). Ціль: 60–79 балів. Залучити LEED AP з концептуальної стадії. Energy &amp; Atmosphere (33 б.) · IEQ (16 б.) · Water Efficiency (11 б.) · Materials (13 б.).</div>
       </div>
       <div class="cert-item">
         <div class="cert-name">WELL Building Standard v2</div>
@@ -684,10 +694,10 @@ body {
   </div>
 </div>
 
-<!-- SECTION 8: ЗАВДАННЯ АРХІТЕКТОРУ -->
+<!-- SECTION 7: ЗАВДАННЯ АРХІТЕКТОРУ -->
 <div class="section">
   <div class="section-head" onclick="toggle(this)" role="button" tabindex="0" aria-expanded="false">
-    <div class="section-num">08</div>
+    <div class="section-num">07</div>
     <div class="section-title">Завдання архітектору</div>
     <span aria-hidden="true" style="font-size:.8rem;color:var(--color-text-secondary)">▼</span>
   </div>
